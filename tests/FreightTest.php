@@ -7,13 +7,16 @@ class FreightTest extends TestCase
     /**
      * @test
      */
-    public function it_can_set_company_code()
+    public function it_can_set_credentials()
     {
+        $companyCode = 'SomeCompanyCode';
+        $companyPassword = 'SomeCompanyPassword';
+
         $freight = new Freight;
+        $freight->setCredentials($companyCode, $companyPassword);
 
-        $freight->setCompanyCode('SomeDummyCode');
-
-        $this->assertEquals('SomeDummyCode', $freight->getCompanyCode());
+        $this->assertEquals($companyCode, $freight->getCompanyCode());
+        $this->assertEquals($companyPassword, $freight->getCompanyPassword());
     }
 
     /**
