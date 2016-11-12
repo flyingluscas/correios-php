@@ -26,6 +26,66 @@ class Freight
     protected $companyPassword;
 
     /**
+     * Origin zip code.
+     *
+     * @var string
+     */
+    protected $originZipCode;
+
+    /**
+     * Destiny zip code.
+     *
+     * @var string
+     */
+    protected $destinyZipCode;
+
+    /**
+     * Creates a new class instance.
+     *
+     * @param array $services
+     */
+    public function __construct(array $services = [])
+    {
+        $this->setServices($services);
+    }
+
+    /**
+     * Set origin and destiny zip codes.
+     *
+     * @param string $origin
+     * @param string $destiny
+     *
+     * @return self
+     */
+    public function setZipCodes($origin, $destiny)
+    {
+        $this->originZipCode = preg_replace('/[^0-9]/', null, $origin);
+        $this->destinyZipCode = preg_replace('/[^0-9]/', null, $destiny);
+
+        return $this;
+    }
+
+    /**
+     * Get origin zip code.
+     *
+     * @return string|null
+     */
+    public function getOriginZipCode()
+    {
+        return $this->originZipCode;
+    }
+
+    /**
+     * Get destiny zip code.
+     *
+     * @return string|null
+     */
+    public function getDestinyZipCode()
+    {
+        return $this->destinyZipCode;
+    }
+
+    /**
      * Set the company credentials within the Correios.
      *
      * @param string $code
@@ -38,16 +98,6 @@ class Freight
         $this->setCompanyCode($code)->setCompanyPassword($password);
 
         return $this;
-    }
-
-    /**
-     * Creates a new class instance.
-     *
-     * @param array $services
-     */
-    public function __construct(array $services = [])
-    {
-        $this->setServices($services);
     }
 
     /**

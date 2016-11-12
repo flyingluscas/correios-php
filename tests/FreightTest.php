@@ -7,6 +7,18 @@ class FreightTest extends TestCase
     /**
      * @test
      */
+    public function it_can_set_zip_codes()
+    {
+        $freight = new Freight;
+        $freight->setZipCodes('00000-000', '99999-999');
+
+        $this->assertEquals('00000000', $freight->getOriginZipCode());
+        $this->assertEquals('99999999', $freight->getDestinyZipCode());
+    }
+
+    /**
+     * @test
+     */
     public function it_can_set_credentials()
     {
         $companyCode = 'SomeCompanyCode';
