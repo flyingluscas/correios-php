@@ -36,9 +36,8 @@ class Items
     /**
      * Fill items collection.
      *
-     * @param  array  $items
-     *
-     * @return self
+     * @param  array  $items [description]
+     * @return [type]        [description]
      */
     public function fill(array $items)
     {
@@ -72,8 +71,8 @@ class Items
      *
      * @return array
      */
-    public function toArray()
+    public function all()
     {
-        return $this->items->toArray();
+        return $this->items->all();
     }
 }

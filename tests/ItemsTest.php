@@ -14,7 +14,7 @@ class ItemsTest extends TestCase
         $collection = new Items;
         $collection->fill($items);
 
-        $this->assertEquals($items, $collection->toArray());
+        $this->assertEquals($items, $collection->all());
     }
 
     /**
@@ -36,7 +36,7 @@ class ItemsTest extends TestCase
                 'length' => 10,
                 'weight' => 10,
             ]
-        ], $collection->toArray());
+        ], $collection->all());
     }
 
     /**
