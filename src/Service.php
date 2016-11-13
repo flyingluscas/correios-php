@@ -27,5 +27,5 @@ abstract class Service
     /**
      * Sedex Hoje.
      */
-    const SEDEX_HOJE= 40290;
+    const SEDEX_HOJE = 40290;
 }
