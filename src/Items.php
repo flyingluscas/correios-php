@@ -36,8 +36,9 @@ class Items
     /**
      * Fill items collection.
      *
-     * @param  array  $items [description]
-     * @return [type]        [description]
+     * @param  array  $items
+     *
+     * @return self
      */
     public function fill(array $items)
     {
