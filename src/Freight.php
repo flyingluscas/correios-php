@@ -9,7 +9,9 @@ class Freight
      *
      * @var array
      */
-    protected $services = [];
+    protected $services = [
+        Service::SEDEX, Service::PAC,
+    ];
 
     /**
      * Code of the company within the Correios.
@@ -66,14 +68,6 @@ class Freight
      * @var string
      */
     protected $noticeOfReceipt = 'N';
-
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        $this->setServices(Service::SEDEX, Service::PAC);
-    }
 
     /**
      * Set notice of receipt.
