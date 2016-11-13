@@ -2,6 +2,8 @@
 
 namespace FlyingLuscas\Correios;
 
+use FlyingLuscas\Correios\Exceptions\InvalidFormatException;
+
 class Freight
 {
     /**
@@ -33,6 +35,13 @@ class Freight
     protected $originZipCode;
 
     /**
+     * Correios format.
+     *
+     * @var int
+     */
+    protected $format;
+
+    /**
      * Destiny zip code.
      *
      * @var string
@@ -40,13 +49,27 @@ class Freight
     protected $destinyZipCode;
 
     /**
-     * Creates a new class instance.
+     * Set the Correios format.
      *
-     * @param array $services
+     * @param int $format
+     *
+     * @return self
      */
-    public function __construct(array $services = [])
+    public function setFormat($format)
     {
-        $this->setServices($services);
+        $this->format = $format;
+
+        return $this;
+    }
+
+    /**
+     * Get Correios format.
+     *
+     * @return int|null
+     */
+    public function getFormat()
+    {
+        return $this->format;
     }
 
     /**

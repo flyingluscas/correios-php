@@ -2,8 +2,37 @@
 
 namespace FlyingLuscas\Correios;
 
+use FlyingLuscas\Correios\Exceptions\InvalidFormatException;
+
 class FreightTest extends TestCase
 {
+    /**
+     * @test
+     * @dataProvider formats
+     */
+    public function it_can_set_format($format)
+    {
+        $freight = new Freight;
+
+        $freight->setFormat($format);
+
+        $this->assertEquals($format, $freight->getFormat());
+    }
+
+    /**
+     * Correios formats.
+     *
+     * @return array
+     */
+    public function formats()
+    {
+        return [
+            [Format::BOX],
+            [Format::ROLL],
+            [Format::ENVELOPE],
+        ];
+    }
+
     /**
      * @test
      */
@@ -29,22 +58,6 @@ class FreightTest extends TestCase
 
         $this->assertEquals($companyCode, $freight->getCompanyCode());
         $this->assertEquals($companyPassword, $freight->getCompanyPassword());
-    }
-
-    /**
-     * @test
-     */
-    public function it_can_set_services_using_the_constructor()
-    {
-        $freight = new Freight([
-            Service::PAC,
-            Service::SEDEX,
-        ]);
-
-        $this->assertEquals([
-            Service::PAC,
-            Service::SEDEX,
-        ], $freight->getServices());
     }
 
     /**
