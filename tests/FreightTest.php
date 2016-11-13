@@ -100,16 +100,14 @@ class FreightTest extends TestCase
     public function it_can_set_multiple_services_using_array()
     {
         $freight = new Freight;
-
-        $freight->setServices([
+        $services = [
             Service::PAC,
             Service::SEDEX,
-        ]);
+        ];
 
-        $this->assertEquals([
-            Service::PAC,
-            Service::SEDEX,
-        ], $freight->getServices());
+        $freight->setServices($services);
+
+        $this->assertEquals($services, $freight->getServices());
     }
 
     /**

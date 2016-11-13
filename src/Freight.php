@@ -2,6 +2,8 @@
 
 namespace FlyingLuscas\Correios;
 
+use Illuminate\Support\Collection;
+
 class Freight
 {
     /**
@@ -271,7 +273,9 @@ class Freight
      */
     public function setServices($service)
     {
-        $this->services = (is_array($service)) ? $service : func_get_args();
+        $services = (is_array($service)) ? $service : func_get_args();
+
+        $this->services = array_unique($services);
 
         return $this;
     }
