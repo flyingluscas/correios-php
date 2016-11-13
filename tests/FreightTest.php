@@ -9,6 +9,17 @@ class FreightTest extends TestCase
     /**
      * @test
      */
+    public function it_can_set_notice_of_receipt()
+    {
+        $freight = new Freight;
+
+        $this->assertEquals('S', $freight->setNoticeOfReceipt(true)->getNoticeOfReceipt());
+        $this->assertEquals('N', $freight->setNoticeOfReceipt(false)->getNoticeOfReceipt());
+    }
+
+    /**
+     * @test
+     */
     public function it_can_set_declared_value()
     {
         $freight = new Freight;

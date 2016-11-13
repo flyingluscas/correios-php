@@ -61,11 +61,42 @@ class Freight
     protected $declaredValue = 0;
 
     /**
+     * Notice of receipt.
+     *
+     * @var string
+     */
+    protected $noticeOfReceipt = 'N';
+
+    /**
      * Create a new class instance.
      */
     public function __construct()
     {
         $this->setServices(Service::SEDEX, Service::PAC);
+    }
+
+    /**
+     * Set notice of receipt.
+     *
+     * @param bool $noticeOfReceipt
+     *
+     * @return self
+     */
+    public function setNoticeOfReceipt($noticeOfReceipt)
+    {
+        $this->noticeOfReceipt = ($noticeOfReceipt === true) ? 'S' : 'N';
+
+        return $this;
+    }
+
+    /**
+     * Get notice of receipt;
+     *
+     * @return string
+     */
+    public function getNoticeOfReceipt()
+    {
+        return $this->noticeOfReceipt;
     }
 
     /**
