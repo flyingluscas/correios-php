@@ -2,8 +2,6 @@
 
 namespace FlyingLuscas\Correios;
 
-use FlyingLuscas\Correios\Exceptions\InvalidFormatException;
-
 class Freight
 {
     /**
@@ -39,7 +37,14 @@ class Freight
      *
      * @var int
      */
-    protected $format;
+    protected $format = Format::BOX;
+
+    /**
+     * Use own hand.
+     *
+     * @var string
+     */
+    protected $ownHand = 'N';
 
     /**
      * Destiny zip code.
@@ -47,6 +52,69 @@ class Freight
      * @var string
      */
     protected $destinyZipCode;
+
+    /**
+     * Declared value.
+     *
+     * @var int|float
+     */
+    protected $declaredValue = 0;
+
+    /**
+     * Create a new class instance.
+     */
+    public function __construct()
+    {
+        $this->setServices(Service::SEDEX, Service::PAC);
+    }
+
+    /**
+     * Set declared value.
+     *
+     * @param int|float $value
+     *
+     * @return self
+     */
+    public function setDeclaredValue($value)
+    {
+        $this->declaredValue = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get declared value.
+     *
+     * @return int|float
+     */
+    public function getDeclaredValue()
+    {
+        return $this->declaredValue;
+    }
+
+    /**
+     * Set own hand.
+     *
+     * @param bool $value
+     *
+     * @return self
+     */
+    public function setOwnHand($ownHand)
+    {
+        $this->ownHand = ($ownHand === true) ? 'S' : 'N';
+
+        return $this;
+    }
+
+    /**
+     * Get own hand.
+     *
+     * @return string
+     */
+    public function getOwnHand()
+    {
+        return $this->ownHand;
+    }
 
     /**
      * Set the Correios format.

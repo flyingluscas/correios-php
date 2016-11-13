@@ -8,6 +8,29 @@ class FreightTest extends TestCase
 {
     /**
      * @test
+     */
+    public function it_can_set_declared_value()
+    {
+        $freight = new Freight;
+
+        $freight->setDeclaredValue(23.75);
+
+        $this->assertEquals(23.75, $freight->getDeclaredValue());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_set_own_hand()
+    {
+        $freight = new Freight;
+
+        $this->assertEquals('S', $freight->setOwnHand(true)->getOwnHand());
+        $this->assertEquals('N', $freight->setOwnHand(false)->getOwnHand());
+    }
+
+    /**
+     * @test
      * @dataProvider formats
      */
     public function it_can_set_format($format)
