@@ -14,7 +14,7 @@ class Cart
     protected $items;
 
     /**
-     * Default item values.
+     * Default items values.
      *
      * @var array
      */
@@ -27,7 +27,7 @@ class Cart
     ];
 
     /**
-     * Create a new class instance.
+     * Creates a new Cart instance.
      */
     public function __construct()
     {
@@ -35,7 +35,7 @@ class Cart
     }
 
     /**
-     * Get the bigger length from the collection.
+     * Get the most bigger length in the cart.
      *
      * @return int|float
      */
@@ -45,7 +45,7 @@ class Cart
     }
 
     /**
-     * Get the total height of all items in the collection.
+     * Get the total height of all items in the cart.
      *
      * @return int|float
      */
@@ -57,7 +57,7 @@ class Cart
     }
 
     /**
-     * Get the bigger width from the collection.
+     * Get the most bigger width in the cart
      *
      * @return int|float
      */
@@ -67,7 +67,7 @@ class Cart
     }
 
     /**
-     * Fill items collection.
+     * Fill cart with items.
      *
      * @param  array  $items
      *
@@ -83,7 +83,7 @@ class Cart
     }
 
     /**
-     * Push a single item to the end of the collection.
+     * Add a single item to the end of the cart.
      *
      * @param  array  $item
      *
@@ -101,7 +101,7 @@ class Cart
     }
 
     /**
-     * Get all items in the collection as an array.
+     * Get all items in the cart as an array.
      *
      * @return array
      */
