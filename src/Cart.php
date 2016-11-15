@@ -34,6 +34,13 @@ class Cart
         $this->items = new Collection;
     }
 
+    public function getTotalWeight()
+    {
+        return $this->items->sum(function ($item) {
+            return $item['weight'] * $item['quantity'];
+        });
+    }
+
     /**
      * Get the most bigger length in the cart.
      *

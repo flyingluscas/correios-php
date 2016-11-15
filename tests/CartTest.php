@@ -7,6 +7,25 @@ class CartTest extends TestCase
     /**
      * @test
      */
+    public function it_can_get_total_weight()
+    {
+        $items = [
+            $this->items(1, ['weight' => 5]),
+            $this->items(1, ['weight' => 5]),
+            $this->items(1, [
+                'weight' => 5,
+                'quantity' => 2,
+            ]),
+        ];
+
+        $cart = new Cart;
+
+        $this->assertEquals(20, $cart->fill($items)->getTotalWeight());
+    }
+
+    /**
+     * @test
+     */
     public function it_can_get_max_length()
     {
         $items = [
@@ -26,12 +45,16 @@ class CartTest extends TestCase
     {
         $items = [
             $this->items(1, ['height' => 5]),
-            $this->items(1, ['height' => 10]),
+            $this->items(1, ['height' => 5]),
+            $this->items(1, [
+                'height' => 5,
+                'quantity' => 2,
+            ]),
         ];
 
         $cart = new Cart;
 
-        $this->assertEquals(15, $cart->fill($items)->getTotalHeight());
+        $this->assertEquals(20, $cart->fill($items)->getTotalHeight());
     }
 
     /**
