@@ -28,10 +28,12 @@ class Cart
 
     /**
      * Creates a new Cart instance.
+     *
+     * @param Collection|null $collection
      */
-    public function __construct()
+    public function __construct(Collection $collection = null)
     {
-        $this->items = new Collection;
+        $this->items = $collection ?: new Collection;
     }
 
     /**

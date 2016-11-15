@@ -30,13 +30,6 @@ class Freight
     protected $companyPassword;
 
     /**
-     * Origin zip code.
-     *
-     * @var string
-     */
-    protected $originZipCode;
-
-    /**
      * Correios format.
      *
      * @var int
@@ -49,6 +42,13 @@ class Freight
      * @var string
      */
     protected $ownHand = 'N';
+
+    /**
+     * Origin zip code.
+     *
+     * @var string
+     */
+    protected $originZipCode;
 
     /**
      * Destiny zip code.
@@ -86,7 +86,7 @@ class Freight
     }
 
     /**
-     * Get notice of receipt;
+     * Get notice of receipt.
      *
      * @return string
      */
