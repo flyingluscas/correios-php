@@ -23,6 +23,7 @@ class Items
         'height' => 0,
         'length' => 0,
         'weight' => 0,
+        'quantity' => 1,
     ];
 
     /**
@@ -31,6 +32,26 @@ class Items
     public function __construct()
     {
         $this->items = new Collection;
+    }
+
+    /**
+     * Get the bigger length from the collection.
+     *
+     * @return int|float
+     */
+    public function getMaxLength()
+    {
+        return $this->items->max('length');
+    }
+
+    /**
+     * Get the bigger width from the collection.
+     *
+     * @return int|float
+     */
+    public function getMaxWidth()
+    {
+        return $this->items->max('width');
     }
 
     /**

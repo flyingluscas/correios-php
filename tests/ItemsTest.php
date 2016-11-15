@@ -7,6 +7,36 @@ class ItemsTest extends TestCase
     /**
      * @test
      */
+    public function it_can_get_max_length()
+    {
+        $items = [
+            $this->items(1, ['length' => 5]),
+            $this->items(1, ['length' => 10]),
+        ];
+
+        $collection = new Items;
+
+        $this->assertEquals(10, $collection->fill($items)->getMaxLength());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_get_max_width()
+    {
+        $items = [
+            $this->items(1, ['width' => 5]),
+            $this->items(1, ['width' => 10]),
+        ];
+
+        $collection = new Items;
+
+        $this->assertEquals(10, $collection->fill($items)->getMaxWidth());
+    }
+
+    /**
+     * @test
+     */
     public function it_can_add_multiple_items()
     {
         $items = $this->items(5);
@@ -22,7 +52,7 @@ class ItemsTest extends TestCase
      */
     public function it_can_add_a_single_item()
     {
-        $item = $this->items(1)[0];
+        $item = $this->items(1);
         $item['dummy'] = 10;
 
         $collection = new Items;
@@ -35,6 +65,7 @@ class ItemsTest extends TestCase
                 'height' => 10,
                 'length' => 10,
                 'weight' => 10,
+                'quantity' => 1,
             ]
         ], $collection->all());
     }
@@ -42,21 +73,23 @@ class ItemsTest extends TestCase
     /**
      * Make stub items.
      *
-     * @param  int $amount
+     * @param  int   $amount
+     * @param  array $data
      *
      * @return array
      */
-    private function items($amount)
+    private function items($amount, array $data = [])
     {
         for ($i = 0; $i < $amount; $i++) {
-            $results[] = [
+            $results[] = array_merge([
                 'width' => 10,
                 'height' => 10,
                 'length' => 10,
                 'weight' => 10,
-            ];
+                'quantity' => 1,
+            ], $data);
         }
 
-        return $results;
+        return ($amount > 1) ? $results : $results[0];
     }
 }
