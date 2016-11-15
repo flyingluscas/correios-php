@@ -4,19 +4,11 @@ All Notable changes to `correios-php` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## NEXT - YYYY-MM-DD
+## Unreleased
+- Tracking
+- Consult zip code
+
+## v0.1.0 - 2016-11-15
 
 ### Added
-- Nothing
-
-### Deprecated
-- Nothing
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+- Freight calculation
