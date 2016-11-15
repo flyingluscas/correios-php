@@ -4,7 +4,7 @@ namespace FlyingLuscas\Correios;
 
 use Illuminate\Support\Collection;
 
-class Items
+class Cart
 {
     /**
      * Collection of items.

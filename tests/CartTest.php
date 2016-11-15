@@ -2,7 +2,7 @@
 
 namespace FlyingLuscas\Correios;
 
-class ItemsTest extends TestCase
+class CartTest extends TestCase
 {
     /**
      * @test
@@ -14,9 +14,9 @@ class ItemsTest extends TestCase
             $this->items(1, ['length' => 10]),
         ];
 
-        $collection = new Items;
+        $cart = new Cart;
 
-        $this->assertEquals(10, $collection->fill($items)->getMaxLength());
+        $this->assertEquals(10, $cart->fill($items)->getMaxLength());
     }
 
     /**
@@ -29,9 +29,9 @@ class ItemsTest extends TestCase
             $this->items(1, ['height' => 10]),
         ];
 
-        $collection = new Items;
+        $cart = new Cart;
 
-        $this->assertEquals(15, $collection->fill($items)->getTotalHeight());
+        $this->assertEquals(15, $cart->fill($items)->getTotalHeight());
     }
 
     /**
@@ -44,9 +44,9 @@ class ItemsTest extends TestCase
             $this->items(1, ['width' => 10]),
         ];
 
-        $collection = new Items;
+        $cart = new Cart;
 
-        $this->assertEquals(10, $collection->fill($items)->getMaxWidth());
+        $this->assertEquals(10, $cart->fill($items)->getMaxWidth());
     }
 
     /**
@@ -56,10 +56,10 @@ class ItemsTest extends TestCase
     {
         $items = $this->items(5);
 
-        $collection = new Items;
-        $collection->fill($items);
+        $cart = new Cart;
+        $cart->fill($items);
 
-        $this->assertEquals($items, $collection->all());
+        $this->assertEquals($items, $cart->all());
     }
 
     /**
@@ -70,9 +70,9 @@ class ItemsTest extends TestCase
         $item = $this->items(1);
         $item['dummy'] = 10;
 
-        $collection = new Items;
+        $cart = new Cart;
 
-        $collection->push($item);
+        $cart->push($item);
 
         $this->assertEquals([
             [
@@ -82,7 +82,7 @@ class ItemsTest extends TestCase
                 'weight' => 10,
                 'quantity' => 1,
             ]
-        ], $collection->all());
+        ], $cart->all());
     }
 
     /**
