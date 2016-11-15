@@ -22,6 +22,21 @@ class ItemsTest extends TestCase
     /**
      * @test
      */
+    public function it_can_get_total_height()
+    {
+        $items = [
+            $this->items(1, ['height' => 5]),
+            $this->items(1, ['height' => 10]),
+        ];
+
+        $collection = new Items;
+
+        $this->assertEquals(15, $collection->fill($items)->getTotalHeight());
+    }
+
+    /**
+     * @test
+     */
     public function it_can_get_max_width()
     {
         $items = [

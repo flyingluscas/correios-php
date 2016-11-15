@@ -45,6 +45,18 @@ class Items
     }
 
     /**
+     * Get the total height of all items in the collection.
+     *
+     * @return int|float
+     */
+    public function getTotalHeight()
+    {
+        return $this->items->sum(function ($item) {
+            return $item['height'] * $item['quantity'];
+        });
+    }
+
+    /**
      * Get the bigger width from the collection.
      *
      * @return int|float
