@@ -7,6 +7,22 @@ class CartTest extends TestCase
     /**
      * @test
      */
+    public function it_can_get_volume()
+    {
+        $items = $this->items(5, [
+            'width' => 5,
+            'height' => 10,
+            'length' => 15,
+        ]);
+
+        $cart = new Cart;
+
+        $this->assertEquals(0.625, $cart->fill($items)->getTotalVolume());
+    }
+
+    /**
+     * @test
+     */
     public function it_can_get_total_weight()
     {
         $items = [

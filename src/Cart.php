@@ -34,6 +34,25 @@ class Cart
         $this->items = new Collection;
     }
 
+    /**
+     * Get the total volume of all items in the cart.
+     *
+     * @return int|float
+     */
+    public function getTotalVolume()
+    {
+        $width = $this->getMaxWidth();
+        $height = $this->getTotalHeight();
+        $length = $this->getMaxLength();
+
+        return ($length * $width * $height) / 6000;
+    }
+
+    /**
+     * Get the total weight of all items in the cart.
+     *
+     * @return int|float
+     */
     public function getTotalWeight()
     {
         return $this->items->sum(function ($item) {
