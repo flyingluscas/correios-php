@@ -2,10 +2,56 @@
 
 namespace FlyingLuscas\Correios;
 
-use FlyingLuscas\Correios\Exceptions\InvalidFormatException;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Handler\MockHandler;
 
 class FreightTest extends TestCase
 {
+    /**
+     * @test
+     */
+    public function it_can_calculate_the_freight()
+    {
+        $response = new Response(200, [
+            'Content-type' => 'text/xml; charset=utf-8',
+        ], file_get_contents(__DIR__.'/sample.xml'));
+
+        $mock = new MockHandler([
+            $response,
+        ]);
+
+        $http = new Client([
+            'handler' => HandlerStack::create($mock),
+        ]);
+
+        $freight = new Freight(null, $http);
+        $freight->setServices(Service::SEDEX);
+        $freight->setFormat(Format::BOX);
+        $freight->setZipCodes('00000-000', '99999-999');
+        $freight->cart->fill($this->items(5));
+
+        $results = [
+            [
+                'service' => Service::SEDEX,
+                'value' => 16.10,
+                'deadline' => 1,
+                'own_hand_value' => 0.0,
+                'notice_receipt_value' => 0.0,
+                'declared_value' => 0.0,
+                'home_delivery' => true,
+                'saturday_delivery' => false,
+                'error' => [
+                    'code' => 0,
+                    'message' => null,
+                ],
+            ]
+        ];
+
+        $this->assertEquals($results, $freight->calculate());
+    }
+
     /**
      * @test
      */

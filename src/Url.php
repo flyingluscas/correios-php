@@ -5,17 +5,17 @@ namespace FlyingLuscas\Correios;
 abstract class Url
 {
     /**
-     * Tracking url.
+     * Price url.
      */
-    const TRACKING = 'https://webservice.correios.com.br/service/rastro/Rastro.wsdl';
+    const PRICE = '//ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco';
+
+    /**
+     * Deadline url.
+     */
+    const DEADLINE = '//ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo';
 
     /**
      * Price and deadline url.
      */
-    const PRICE_DEADLINE = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx';
-
-    /**
-     * Zip code url.
-     */
-    const ZIP_CODE = 'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl';
+    const PRICE_DEADLINE = '//ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo';
 }
