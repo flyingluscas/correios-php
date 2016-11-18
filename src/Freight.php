@@ -5,9 +5,12 @@ namespace FlyingLuscas\Correios;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Collection;
+use FlyingLuscas\Correios\Utils\XmlParser;
 
 class Freight
 {
+    use XmlParser;
+
     /**
      * HTTP client.
      *
@@ -156,18 +159,6 @@ class Freight
                 'message' => $service['MsgErro'] ?: null,
             ],
         ];
-    }
-
-    /**
-     * Convert XML in to array.
-     *
-     * @param  string $xml
-     *
-     * @return array
-     */
-    protected function convertXMLToArray($xml)
-    {
-        return json_decode(json_encode(simplexml_load_string($xml)), true);
     }
 
     /**
