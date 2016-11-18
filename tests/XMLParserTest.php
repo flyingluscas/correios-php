@@ -2,16 +2,16 @@
 
 namespace FlyingLuscas\Correios;
 
-use FlyingLuscas\Correios\Utils\XmlParser;
-use FlyingLuscas\Correios\Exceptions\InvalidXmlStringException;
+use FlyingLuscas\Correios\Support\XMLParser;
+use FlyingLuscas\Correios\Exceptions\InvalidXMLStringException;
 
-class XmlParserTest extends TestCase
+class XMLParserTest extends TestCase
 {
-    use XmlParser;
+    use XMLParser;
 
     /**
      * @test
-     * @dataProvider provideValidXmlStringToJson
+     * @dataProvider provideValidXMLStringToJson
      */
     public function testCanConvertXmlToJson($string, $expected)
     {
@@ -20,7 +20,7 @@ class XmlParserTest extends TestCase
 
     /**
      * @test
-     * @dataProvider provideValidXmlStringToArray
+     * @dataProvider provideValidXMLStringToArray
      */
     public function testCanConvertXmlToArray($string, $expected)
     {
@@ -30,23 +30,23 @@ class XmlParserTest extends TestCase
     /**
      * @test
      */
-    public function testThrowExceptionWithInvalidXmlString()
+    public function testThrowExceptionWithInvalidXMLString()
     {
         try {
             $this->convertXMLToJson('');
         } catch (\Exception $e) {
-            $this->assertInstanceOf(InvalidXmlStringException::class, $e);
+            $this->assertInstanceOf(InvalidXMLStringException::class, $e);
         }
     }
 
-    public function provideValidXmlStringToArray()
+    public function provideValidXMLStringToArray()
     {
         return [
             ['<root_element><element>test</element></root_element>', ['element' => "test"]]
         ];
     }
 
-    public function provideValidXmlStringToJson()
+    public function provideValidXMLStringToJson()
     {
         return [
             ['<root_element><element>test</element></root_element>', json_encode(['element' => "test"])]

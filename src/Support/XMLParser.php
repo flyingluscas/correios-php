@@ -1,10 +1,10 @@
 <?php
 
-namespace FlyingLuscas\Correios\Utils;
+namespace FlyingLuscas\Correios\Support;
 
-use FlyingLuscas\Correios\Exceptions\InvalidXmlStringException;
+use FlyingLuscas\Correios\Exceptions\InvalidXMLStringException;
 
-trait XmlParser
+trait XMLParser
 {
     /**
      * Convert XML in to array.
@@ -28,7 +28,7 @@ trait XmlParser
     public function convertXMLToJson($xml)
     {
         if (!$this->isValidXml($xml)) {
-            throw new InvalidXmlStringException;
+            throw new InvalidXMLStringException;
         }
 
         return json_encode(simplexml_load_string($xml, "SimpleXMLElement"));

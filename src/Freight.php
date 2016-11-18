@@ -5,11 +5,11 @@ namespace FlyingLuscas\Correios;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Collection;
-use FlyingLuscas\Correios\Utils\XmlParser;
+use FlyingLuscas\Correios\Support\XMLParser;
 
 class Freight
 {
-    use XmlParser;
+    use XMLParser;
 
     /**
      * HTTP client.
