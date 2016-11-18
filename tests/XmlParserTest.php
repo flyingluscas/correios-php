@@ -2,8 +2,8 @@
 
 namespace FlyingLuscas\Correios;
 
-use FlyingLuscas\Correios\Exception\InvalidXmlStringException;
 use FlyingLuscas\Correios\Utils\XmlParser;
+use FlyingLuscas\Correios\Exceptions\InvalidXmlStringException;
 
 class XmlParserTest extends TestCase
 {

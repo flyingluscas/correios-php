@@ -2,7 +2,7 @@
 
 namespace FlyingLuscas\Correios\Utils;
 
-use FlyingLuscas\Correios\Exception\InvalidXmlStringException;
+use FlyingLuscas\Correios\Exceptions\InvalidXmlStringException;
 
 trait XmlParser
 {
