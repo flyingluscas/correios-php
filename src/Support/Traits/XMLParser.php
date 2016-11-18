@@ -1,6 +1,6 @@
 <?php
 
-namespace FlyingLuscas\Correios\Support;
+namespace FlyingLuscas\Correios\Support\Traits;
 
 use FlyingLuscas\Correios\Exceptions\InvalidXMLStringException;
 

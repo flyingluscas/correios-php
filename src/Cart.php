@@ -3,8 +3,9 @@
 namespace FlyingLuscas\Correios;
 
 use Illuminate\Support\Collection;
+use FlyingLuscas\Correios\Contracts\CartInterface;
 
-class Cart
+class Cart implements CartInterface
 {
     /**
      * Collection of items.

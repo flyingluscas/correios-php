@@ -5,7 +5,10 @@ namespace FlyingLuscas\Correios;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Collection;
-use FlyingLuscas\Correios\Support\XMLParser;
+use FlyingLuscas\Correios\Contracts\CartInterface;
+use FlyingLuscas\Correios\Support\Traits\XMLParser;
+use FlyingLuscas\Correios\Support\FreightUrlBuilder;
+use FlyingLuscas\Correios\Contracts\UrlBuilderInterface;
 
 class Freight
 {
@@ -93,10 +96,10 @@ class Freight
     /**
      * Creates a new Freight instance.
      *
-     * @param FlyingLuscas\Correios\Cart|null $cart
-     * @param GuzzleHttp\ClientInterface|null $http
+     * @param \FlyingLuscas\Correios\Contracts\CartInterface|null $cart
+     * @param \GuzzleHttp\ClientInterface|null                    $http
      */
-    public function __construct(Cart $cart = null, ClientInterface $http = null)
+    public function __construct(CartInterface $cart = null, ClientInterface $http = null)
     {
         $this->cart = $cart ?: new Cart;
         $this->http = $http ?: new Client;
@@ -106,14 +109,18 @@ class Freight
      * Does a request to the Correios webservice
      * to calculate the price and deadline of the freight.
      *
+     * @param  \FlyingLuscas\Correios\Contracts\UrlBuilderInterface|null $urlBuilder
+     *
      * @return array
      */
-    public function calculate()
+    public function calculate(UrlBuilderInterface $urlBuilder = null)
     {
-        $response = $this->http->request('GET', $this->buildUrl());
-        $data = $this->convertXMLToArray($response->getBody()->getContents());
+        $urlBuilder = $urlBuilder ?: new FreightUrlBuilder($this);
 
-        return $this->transform($data);
+        $response = $this->http->request('GET', $urlBuilder->makeUrl());
+        $response = $this->convertXMLToArray($response->getBody()->getContents());
+
+        return $this->transform($response);
     }
 
     /**
@@ -123,7 +130,7 @@ class Freight
      *
      * @return array
      */
-    public function transform(array $data)
+    protected function transform(array $data)
     {
         if (array_key_exists('Codigo', $data['Servicos']['cServico'])) {
             $results[] = $this->transformService($data['Servicos']['cServico']);
@@ -159,39 +166,6 @@ class Freight
                 'message' => $service['MsgErro'] ?: null,
             ],
         ];
-    }
-
-    /**
-     * Build the request url.
-     *
-     * @return string
-     */
-    protected function buildUrl()
-    {
-        $parameters['nCdEmpresa'] = $this->getCompanyCode();
-        $parameters['sDsSenha'] = $this->getCompanyPassword();
-        $parameters['nCdServico'] = implode(',', $this->getServices());
-        $parameters['sCepOrigem'] = $this->getOriginZipCode();
-        $parameters['sCepDestino'] = $this->getDestinyZipCode();
-        $parameters['nCdFormato'] = $this->getFormat();
-        $parameters['nVlComprimento'] = $this->cart->getMaxLength();
-        $parameters['nVlAltura'] = $this->cart->getTotalHeight();
-        $parameters['nVlLargura'] = $this->cart->getMaxWidth();
-        $parameters['nVlDiametro'] = 0;
-        $parameters['sCdMaoPropria'] = $this->getOwnHand();
-        $parameters['nVlValorDeclarado'] = $this->getDeclaredValue();
-        $parameters['sCdAvisoRecebimento'] = $this->getNoticeOfReceipt();
-
-        $volume = $this->cart->getTotalVolume();
-        $weight = $this->cart->getTotalWeight();
-
-        if ($volume < 10 || $volume <= $weight) {
-            $parameters['nVlPeso'] = $weight;
-        } else {
-            $parameters['nVlPeso'] = $volume;
-        }
-
-        return sprintf('%s?%s', Url::PRICE_DEADLINE, http_build_query($parameters));
     }
 
     /**
