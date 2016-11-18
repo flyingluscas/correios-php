@@ -27,11 +27,11 @@ trait XMLParser
      */
     public function convertXMLToJson($xml)
     {
-        if (!$this->isValidXml($xml)) {
+        if (! $this->isValidXML($xml)) {
             throw new InvalidXMLStringException;
         }
 
-        return json_encode(simplexml_load_string($xml, "SimpleXMLElement"));
+        return json_encode(simplexml_load_string($xml));
     }
 
     /**
@@ -41,16 +41,19 @@ trait XMLParser
      *
      * @return bool
      */
-    public function isValidXml($xml)
+    public function isValidXML($xml)
     {
-        if (trim($xml) == '') {
+        if (! trim($xml)) {
             return false;
         }
 
         libxml_use_internal_errors(true);
+
         $content = simplexml_load_string($xml);
         $errors = libxml_get_errors();
+
         libxml_clear_errors();
-        return (count($errors) == 0);
+
+        return count($errors) == 0;
     }
 }
