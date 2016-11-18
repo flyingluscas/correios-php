@@ -2,10 +2,33 @@
 
 namespace FlyingLuscas\Correios;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\MockHandler;
 use PHPUnit_Framework_TestCase as PHPUnitTestCase;
 
 abstract class TestCase extends PHPUnitTestCase
 {
+    /**
+     * Get Guzzle HTTP client mock.
+     *
+     * @param  \GuzzleHttp\Psr7\Response|array  $response
+     *
+     * @return \GuzzleHttp\Client
+     */
+    protected function getMockForGuzzleClient($response)
+    {
+        if (! is_array($response)) {
+            $response = [$response];
+        }
+
+        $mock = new MockHandler($response);
+
+        return new Client([
+            'handler' => HandlerStack::create($mock),
+        ]);
+    }
+
     /**
      * Make stub items.
      *

@@ -2,33 +2,69 @@
 
 namespace FlyingLuscas\Correios;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Handler\MockHandler;
 
 class FreightTest extends TestCase
 {
     /**
      * @test
      */
-    public function it_can_calculate_the_freight()
+    public function it_can_calculate_the_freight_for_multiple_services()
     {
-        $response = new Response(200, [
-            'Content-type' => 'text/xml; charset=utf-8',
-        ], file_get_contents(__DIR__.'/sample.xml'));
+        $http = $this->getMockForGuzzleClient(
+            new Response(200, [], file_get_contents(__DIR__.'/Samples/ManyServices.xml'))
+        );
 
-        $mock = new MockHandler([
-            $response,
-        ]);
+        $freight = new Freight(null, $http);
+        $freight->setServices(Service::SEDEX, Service::PAC);
+        $freight->setZipCodes('00000-000', '99999-999');
+        $freight->cart->fill($this->items(5));
 
-        $http = new Client([
-            'handler' => HandlerStack::create($mock),
-        ]);
+        $results = [
+            [
+                'service' => Service::SEDEX,
+                'value' => 16.10,
+                'deadline' => 1,
+                'own_hand_value' => 0.0,
+                'notice_receipt_value' => 0.0,
+                'declared_value' => 0.0,
+                'home_delivery' => true,
+                'saturday_delivery' => false,
+                'error' => [
+                    'code' => 0,
+                    'message' => null,
+                ],
+            ],
+            [
+                'service' => Service::PAC,
+                'value' => 16.10,
+                'deadline' => 5,
+                'own_hand_value' => 0.0,
+                'notice_receipt_value' => 0.0,
+                'declared_value' => 0.0,
+                'home_delivery' => true,
+                'saturday_delivery' => false,
+                'error' => [
+                    'code' => 0,
+                    'message' => null,
+                ],
+            ]
+        ];
+
+        $this->assertEquals($results, $freight->calculate());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_calculate_the_freight_for_a_single_service()
+    {
+        $http = $this->getMockForGuzzleClient(
+            new Response(200, [], file_get_contents(__DIR__.'/Samples/SingleService.xml'))
+        );
 
         $freight = new Freight(null, $http);
         $freight->setServices(Service::SEDEX);
-        $freight->setFormat(Format::BOX);
         $freight->setZipCodes('00000-000', '99999-999');
         $freight->cart->fill($this->items(5));
 
