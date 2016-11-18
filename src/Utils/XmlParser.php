@@ -19,11 +19,11 @@ trait XmlParser
     }
 
     /**
-     * Convert XML in to array.
+     * Convert XML in to a JSON string.
      *
      * @param  string $xml
      *
-     * @return array
+     * @return string
      */
     public function convertXMLToJson($xml)
     {
@@ -35,11 +35,11 @@ trait XmlParser
     }
 
     /**
-     * Check if a string contains a valid xml content
+     * Check if a string contains a valid XML content.
      *
      * @param  string $xml
      *
-     * @return boolean
+     * @return bool
      */
     public function isValidXml($xml)
     {
