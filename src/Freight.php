@@ -133,11 +133,13 @@ class Freight
     protected function transform(array $data)
     {
         if (array_key_exists('Codigo', $data['Servicos']['cServico'])) {
-            $results[] = $this->transformService($data['Servicos']['cServico']);
-        } else {
-            foreach ($data['Servicos']['cServico'] as $service) {
-                $results[] = $this->transformService($service);
-            }
+            return [
+                $this->transformService($data['Servicos']['cServico'])
+            ];
+        }
+
+        foreach ($data['Servicos']['cServico'] as $service) {
+            $results[] = $this->transformService($service);
         }
 
         return $results;
