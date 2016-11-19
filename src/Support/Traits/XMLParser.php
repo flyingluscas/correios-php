@@ -49,7 +49,7 @@ trait XMLParser
 
         libxml_use_internal_errors(true);
 
-        $content = simplexml_load_string($xml);
+        simplexml_load_string($xml);
         $errors = libxml_get_errors();
 
         libxml_clear_errors();
