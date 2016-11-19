@@ -2,7 +2,9 @@
 
 namespace FlyingLuscas\Correios;
 
+use Mockery;
 use GuzzleHttp\Psr7\Response;
+use FlyingLuscas\Correios\Support\FreightUrlBuilder;
 
 class FreightTest extends TestCase
 {
@@ -14,6 +16,10 @@ class FreightTest extends TestCase
         $http = $this->getMockForGuzzleClient(
             new Response(200, [], file_get_contents(__DIR__.'/Samples/ManyServices.xml'))
         );
+
+        $urlBuilder = Mockery::mock(FreightUrlBuilder::class, function ($mock) {
+            $mock->shouldReceive('makeUrl')->andReturn('some_dummy_url');
+        });
 
         $freight = new Freight(null, $http);
         $freight->setServices(Service::SEDEX, Service::PAC);
@@ -51,7 +57,7 @@ class FreightTest extends TestCase
             ]
         ];
 
-        $this->assertEquals($results, $freight->calculate());
+        $this->assertEquals($results, $freight->calculate($urlBuilder));
     }
 
     /**
@@ -62,6 +68,10 @@ class FreightTest extends TestCase
         $http = $this->getMockForGuzzleClient(
             new Response(200, [], file_get_contents(__DIR__.'/Samples/SingleService.xml'))
         );
+
+        $urlBuilder = Mockery::mock(FreightUrlBuilder::class, function ($mock) {
+            $mock->shouldReceive('makeUrl')->andReturn('some_dummy_url');
+        });
 
         $freight = new Freight(null, $http);
         $freight->setServices(Service::SEDEX);
@@ -85,7 +95,7 @@ class FreightTest extends TestCase
             ]
         ];
 
-        $this->assertEquals($results, $freight->calculate());
+        $this->assertEquals($results, $freight->calculate($urlBuilder));
     }
 
     /**

@@ -32,6 +32,16 @@ class FreightUrlBuilder implements UrlBuilderInterface
      */
     public function makeUrl()
     {
+        return sprintf('%s?%s', Url::PRICE_DEADLINE, http_build_query($this->getParameters()));
+    }
+
+    /**
+     * Get Correios parameters.
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
         $parameters['nCdEmpresa'] = $this->freight->getCompanyCode();
         $parameters['sDsSenha'] = $this->freight->getCompanyPassword();
         $parameters['nCdServico'] = implode(',', $this->freight->getServices());
@@ -49,12 +59,8 @@ class FreightUrlBuilder implements UrlBuilderInterface
         $volume = $this->freight->cart->getTotalVolume();
         $weight = $this->freight->cart->getTotalWeight();
 
-        if ($volume < 10 || $volume <= $weight) {
-            $parameters['nVlPeso'] = $weight;
-        } else {
-            $parameters['nVlPeso'] = $volume;
-        }
+        $parameters['nVlPeso'] = ($volume < 10 || $volume <= $weight ? $weight : $volume);
 
-        return sprintf('%s?%s', Url::PRICE_DEADLINE, http_build_query($parameters));
+        return $parameters;
     }
 }

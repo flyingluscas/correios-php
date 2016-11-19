@@ -2,6 +2,7 @@
 
 namespace FlyingLuscas\Correios;
 
+use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
@@ -9,6 +10,14 @@ use PHPUnit_Framework_TestCase as PHPUnitTestCase;
 
 abstract class TestCase extends PHPUnitTestCase
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function tearDown()
+    {
+        Mockery::close();
+    }
+
     /**
      * Get Guzzle HTTP client mock.
      *
