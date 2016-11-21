@@ -1,7 +1,9 @@
 <?php
 
-namespace FlyingLuscas\Correios;
+namespace FlyingLuscas\Correios\Domains\Correios\Freight;
 
+use FlyingLuscas\Correios\Domains\Correios\Cart\Cart;
+use FlyingLuscas\Correios\Domains\Correios\Container\Container;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Collection;
@@ -24,7 +26,7 @@ class Freight
     /**
      * Cart fo items.
      *
-     * @var \FlyingLuscas\Correios\Cart
+     * @var \FlyingLuscas\Correios\Domains\Correios\Cart\Cart
      */
     public $cart;
 
@@ -54,9 +56,9 @@ class Freight
     /**
      * Correios format.
      *
-     * @var int
+     * @var \FlyingLuscas\Correios\Domains\Correios\Container\Container
      */
-    protected $format = Format::BOX;
+    protected $format;
 
     /**
      * Use own hand.
@@ -132,6 +134,8 @@ class Freight
      */
     protected function transform(array $data)
     {
+        $results = [];
+
         if (array_key_exists('Codigo', $data['Servicos']['cServico'])) {
             return [
                 $this->transformService($data['Servicos']['cServico'])
@@ -243,13 +247,13 @@ class Freight
     }
 
     /**
-     * Set the Correios format.
+     * Set the Correios container format.
      *
-     * @param int $format
+     * @param Container $format
      *
      * @return self
      */
-    public function setFormat($format)
+    public function setFormat(Container $format)
     {
         $this->format = $format;
 
@@ -257,9 +261,9 @@ class Freight
     }
 
     /**
-     * Get Correios format.
+     * Get Correios container format.
      *
-     * @return int|null
+     * @return Container|null
      */
     public function getFormat()
     {

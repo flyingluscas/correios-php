@@ -1,6 +1,6 @@
 <?php
 
-namespace FlyingLuscas\Correios;
+namespace FlyingLuscas\Correios\Domains\Correios\Cart;
 
 use Illuminate\Support\Collection;
 use FlyingLuscas\Correios\Contracts\CartInterface;

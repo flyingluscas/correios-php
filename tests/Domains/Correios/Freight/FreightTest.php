@@ -1,7 +1,11 @@
 <?php
 
-namespace FlyingLuscas\Correios;
+namespace FlyingLuscas\Correios\Domains\Correios\Freight;
 
+use FlyingLuscas\Correios\Domains\Correios\Container\Type\Box;
+use FlyingLuscas\Correios\Domains\Correios\Container\Type\Envelop;
+use FlyingLuscas\Correios\Domains\Correios\Container\Type\Roll;
+use FlyingLuscas\Correios\TestCase;
 use Mockery;
 use GuzzleHttp\Psr7\Response;
 use FlyingLuscas\Correios\Support\FreightUrlBuilder;
@@ -14,7 +18,7 @@ class FreightTest extends TestCase
     public function it_can_calculate_the_freight_for_multiple_services()
     {
         $http = $this->getMockForGuzzleClient(
-            new Response(200, [], file_get_contents(__DIR__.'/Samples/ManyServices.xml'))
+            new Response(200, [], file_get_contents(__DIR__ . '/../../../Samples/ManyServices.xml'))
         );
 
         $urlBuilder = Mockery::mock(FreightUrlBuilder::class, function ($mock) {
@@ -66,7 +70,7 @@ class FreightTest extends TestCase
     public function it_can_calculate_the_freight_for_a_single_service()
     {
         $http = $this->getMockForGuzzleClient(
-            new Response(200, [], file_get_contents(__DIR__.'/Samples/SingleService.xml'))
+            new Response(200, [], file_get_contents(__DIR__ . '/../../../Samples/SingleService.xml'))
         );
 
         $urlBuilder = Mockery::mock(FreightUrlBuilder::class, function ($mock) {
@@ -136,13 +140,14 @@ class FreightTest extends TestCase
      * @test
      * @dataProvider formats
      */
-    public function it_can_set_format($format)
+    public function it_can_set_format($format, $expected)
     {
         $freight = new Freight;
 
         $freight->setFormat($format);
 
-        $this->assertEquals($format, $freight->getFormat());
+        $this->assertInstanceOf($expected, $freight->getFormat());
+        $this->assertEquals($expected, get_class($freight->getFormat()));
     }
 
     /**
@@ -153,9 +158,9 @@ class FreightTest extends TestCase
     public function formats()
     {
         return [
-            [Format::BOX],
-            [Format::ROLL],
-            [Format::ENVELOPE],
+            [new Box(), Box::class],
+            [new Roll(), Roll::class],
+            [new Envelop(), Envelop::class],
         ];
     }
 
