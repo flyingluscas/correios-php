@@ -24,7 +24,7 @@
     "require": {
         "php": "~5.6|~7.0",
         "guzzlehttp/guzzle": "~6.2",
-        "tightenco/collect": "~5.1"
+        "tightenco/collect": "~5.2"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "0.3.*",
