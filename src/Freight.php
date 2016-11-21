@@ -6,13 +6,15 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Collection;
 use FlyingLuscas\Correios\Contracts\CartInterface;
-use FlyingLuscas\Correios\Support\Traits\XMLParser;
+use FlyingLuscas\Correios\Transformers\Transformer;
 use FlyingLuscas\Correios\Support\FreightUrlBuilder;
 use FlyingLuscas\Correios\Contracts\UrlBuilderInterface;
+use FlyingLuscas\Correios\Contracts\TransformerInterface;
+use FlyingLuscas\Correios\Transformers\FreightServiceTransformer;
 
 class Freight
 {
-    use XMLParser;
+    use Transformer;
 
     /**
      * HTTP client.
@@ -109,65 +111,19 @@ class Freight
      * Does a request to the Correios webservice
      * to calculate the price and deadline of the freight.
      *
-     * @param  \FlyingLuscas\Correios\Contracts\UrlBuilderInterface|null $urlBuilder
+     * @param  TransformerInterface|null $transformer
+     * @param  UrlBuilderInterface|null  $urlBuilder
      *
      * @return array
      */
-    public function calculate(UrlBuilderInterface $urlBuilder = null)
+    public function calculate(TransformerInterface $transformer = null, UrlBuilderInterface $urlBuilder = null)
     {
         $urlBuilder = $urlBuilder ?: new FreightUrlBuilder($this);
+        $transformer = $transformer ?: new FreightServiceTransformer;
 
         $response = $this->http->request('GET', $urlBuilder->makeUrl());
-        $response = $this->convertXMLToArray($response->getBody()->getContents());
 
-        return $this->transform($response);
-    }
-
-    /**
-     * Transform response data in to readable results.
-     *
-     * @param  array  $data
-     *
-     * @return array
-     */
-    protected function transform(array $data)
-    {
-        if (array_key_exists('Codigo', $data['Servicos']['cServico'])) {
-            return [
-                $this->transformService($data['Servicos']['cServico'])
-            ];
-        }
-
-        foreach ($data['Servicos']['cServico'] as $service) {
-            $results[] = $this->transformService($service);
-        }
-
-        return $results;
-    }
-
-    /**
-     * Transform a single service.
-     *
-     * @param  array  $service
-     *
-     * @return array
-     */
-    protected function transformService(array $service)
-    {
-        return [
-            'service' => intval($service['Codigo']),
-            'value' => floatval(str_replace(',', '.', $service['Valor'])),
-            'deadline' => intval($service['PrazoEntrega']),
-            'own_hand_value' => floatval(str_replace(',', '.', $service['ValorMaoPropria'])),
-            'notice_receipt_value' => floatval(str_replace(',', '.', $service['ValorAvisoRecebimento'])),
-            'declared_value' => floatval(str_replace(',', '.', $service['ValorValorDeclarado'])),
-            'home_delivery' => $service['EntregaDomiciliar'] == 'S',
-            'saturday_delivery' => $service['EntregaSabado'] == 'S',
-            'error' => [
-                'code' => $service['Erro'],
-                'message' => $service['MsgErro'] ?: null,
-            ],
-        ];
+        return $this->transform($response->getBody()->getContents(), $transformer);
     }
 
     /**

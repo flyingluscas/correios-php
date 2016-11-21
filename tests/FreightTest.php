@@ -57,7 +57,7 @@ class FreightTest extends TestCase
             ]
         ];
 
-        $this->assertEquals($results, $freight->calculate($urlBuilder));
+        $this->assertEquals($results, $freight->calculate(null, $urlBuilder));
     }
 
     /**
@@ -95,7 +95,7 @@ class FreightTest extends TestCase
             ]
         ];
 
-        $this->assertEquals($results, $freight->calculate($urlBuilder));
+        $this->assertEquals($results, $freight->calculate(null, $urlBuilder));
     }
 
     /**
