@@ -60,4 +60,67 @@ abstract class TestCase extends PHPUnitTestCase
 
         return ($amount > 1) ? $results : $results[0];
     }
+
+    /**
+     * Provide services samples of XML.
+     *
+     * @return array
+     */
+    public function provideServicesXMLSamples()
+    {
+        return [
+            [
+                __DIR__.'/Samples/SingleService.xml',
+                [
+                    [
+                        'service' => Service::SEDEX,
+                        'value' => 16.10,
+                        'deadline' => 1,
+                        'own_hand_value' => 0.0,
+                        'notice_receipt_value' => 0.0,
+                        'declared_value' => 0.0,
+                        'home_delivery' => true,
+                        'saturday_delivery' => false,
+                        'error' => [
+                            'code' => 0,
+                            'message' => null,
+                        ],
+                    ]
+                ],
+            ],
+            [
+                __DIR__.'/Samples/ManyServices.xml',
+                [
+                    [
+                        'service' => Service::SEDEX,
+                        'value' => 16.10,
+                        'deadline' => 1,
+                        'own_hand_value' => 0.0,
+                        'notice_receipt_value' => 0.0,
+                        'declared_value' => 0.0,
+                        'home_delivery' => true,
+                        'saturday_delivery' => false,
+                        'error' => [
+                            'code' => 0,
+                            'message' => null,
+                        ],
+                    ],
+                    [
+                        'service' => Service::PAC,
+                        'value' => 16.10,
+                        'deadline' => 5,
+                        'own_hand_value' => 0.0,
+                        'notice_receipt_value' => 0.0,
+                        'declared_value' => 0.0,
+                        'home_delivery' => true,
+                        'saturday_delivery' => false,
+                        'error' => [
+                            'code' => 0,
+                            'message' => null,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
 }

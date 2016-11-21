@@ -10,11 +10,12 @@ class FreightTest extends TestCase
 {
     /**
      * @test
+     * @dataProvider provideServicesXMLSamples
      */
-    public function it_can_calculate_the_freight_for_multiple_services()
+    public function it_can_calculate_the_freight($sample, $expected)
     {
         $http = $this->getMockForGuzzleClient(
-            new Response(200, [], file_get_contents(__DIR__.'/Samples/ManyServices.xml'))
+            new Response(200, [], file_get_contents($sample))
         );
 
         $urlBuilder = Mockery::mock(FreightUrlBuilder::class, function ($mock) {
@@ -22,80 +23,10 @@ class FreightTest extends TestCase
         });
 
         $freight = new Freight(null, $http);
-        $freight->setServices(Service::SEDEX, Service::PAC);
         $freight->setZipCodes('00000-000', '99999-999');
         $freight->cart->fill($this->items(5));
 
-        $results = [
-            [
-                'service' => Service::SEDEX,
-                'value' => 16.10,
-                'deadline' => 1,
-                'own_hand_value' => 0.0,
-                'notice_receipt_value' => 0.0,
-                'declared_value' => 0.0,
-                'home_delivery' => true,
-                'saturday_delivery' => false,
-                'error' => [
-                    'code' => 0,
-                    'message' => null,
-                ],
-            ],
-            [
-                'service' => Service::PAC,
-                'value' => 16.10,
-                'deadline' => 5,
-                'own_hand_value' => 0.0,
-                'notice_receipt_value' => 0.0,
-                'declared_value' => 0.0,
-                'home_delivery' => true,
-                'saturday_delivery' => false,
-                'error' => [
-                    'code' => 0,
-                    'message' => null,
-                ],
-            ]
-        ];
-
-        $this->assertEquals($results, $freight->calculate(null, $urlBuilder));
-    }
-
-    /**
-     * @test
-     */
-    public function it_can_calculate_the_freight_for_a_single_service()
-    {
-        $http = $this->getMockForGuzzleClient(
-            new Response(200, [], file_get_contents(__DIR__.'/Samples/SingleService.xml'))
-        );
-
-        $urlBuilder = Mockery::mock(FreightUrlBuilder::class, function ($mock) {
-            $mock->shouldReceive('makeUrl')->andReturn('some_dummy_url');
-        });
-
-        $freight = new Freight(null, $http);
-        $freight->setServices(Service::SEDEX);
-        $freight->setZipCodes('00000-000', '99999-999');
-        $freight->cart->fill($this->items(5));
-
-        $results = [
-            [
-                'service' => Service::SEDEX,
-                'value' => 16.10,
-                'deadline' => 1,
-                'own_hand_value' => 0.0,
-                'notice_receipt_value' => 0.0,
-                'declared_value' => 0.0,
-                'home_delivery' => true,
-                'saturday_delivery' => false,
-                'error' => [
-                    'code' => 0,
-                    'message' => null,
-                ],
-            ]
-        ];
-
-        $this->assertEquals($results, $freight->calculate(null, $urlBuilder));
+        $this->assertEquals($expected, $freight->calculate(null, $urlBuilder));
     }
 
     /**
