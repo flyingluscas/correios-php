@@ -1,6 +1,8 @@
 <?php
 
-namespace FlyingLuscas\Correios;
+namespace FlyingLuscas\Correios\Domains\Correios\Cart;
+
+use FlyingLuscas\Correios\TestCase;
 
 class CartTest extends TestCase
 {

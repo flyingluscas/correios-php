@@ -2,11 +2,10 @@
 
 namespace FlyingLuscas\Correios\Support;
 
+use FlyingLuscas\Correios\Domains\Correios\Cart\Cart;
+use FlyingLuscas\Correios\Domains\Correios\Freight\Freight;
+use FlyingLuscas\Correios\Domains\Correios\Freight\Url;
 use Mockery;
-use FlyingLuscas\Correios\Url;
-use FlyingLuscas\Correios\Cart;
-use FlyingLuscas\Correios\Freight;
-use FlyingLuscas\Correios\Service;
 use FlyingLuscas\Correios\TestCase;
 
 class FreightUrlBuilderTest extends TestCase
@@ -46,9 +45,9 @@ class FreightUrlBuilderTest extends TestCase
     /**
      * Get mock for Freight.
      *
-     * @param  \FlyingLuscas\Correios\Cart $cart
+     * @param  \FlyingLuscas\Correios\Domains\Correios\Cart\Cart $cart
      *
-     * @return \FlyingLuscas\Correios\Freight
+     * @return \FlyingLuscas\Correios\Domains\Correios\Freight\Freight
      */
     private function getMockForFreight(Cart $cart)
     {
@@ -80,7 +79,7 @@ class FreightUrlBuilderTest extends TestCase
      * @param  int    $weight
      * @param  int    $volume
      *
-     * @return \FlyingLuscas\Correios\Cart
+     * @return \FlyingLuscas\Correios\Domains\Correios\Cart\Cart
      */
     private function getMockForCart($width = 1, $height = 1, $length = 1, $weight = 1, $volume = 1)
     {

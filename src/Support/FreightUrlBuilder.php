@@ -2,16 +2,16 @@
 
 namespace FlyingLuscas\Correios\Support;
 
-use FlyingLuscas\Correios\Url;
-use FlyingLuscas\Correios\Freight;
+use FlyingLuscas\Correios\Domains\Correios\Freight\Freight;
 use FlyingLuscas\Correios\Contracts\UrlBuilderInterface;
+use FlyingLuscas\Correios\Domains\Correios\Freight\Url;
 
 class FreightUrlBuilder implements UrlBuilderInterface
 {
     /**
      * Freight.
      *
-     * @var \FlyingLuscas\Correios\Freight
+     * @var Freight
      */
     protected $freight;
 

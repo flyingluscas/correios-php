@@ -1,6 +1,6 @@
 <?php
 
-namespace FlyingLuscas\Correios;
+namespace FlyingLuscas\Correios\Domains\Correios\Cart;
 
 use DusanKasan\Knapsack\Collection;
 use FlyingLuscas\Correios\Contracts\CartInterface;
