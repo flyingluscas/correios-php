@@ -8,6 +8,11 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Tracking
 - Consult zip code
 
+## v0.1.1 - 2016-11-21
+
+### Fixed
+- Remove Laravel collection for more compatibility
+
 ## v0.1.0 - 2016-11-15
 
 ### Added

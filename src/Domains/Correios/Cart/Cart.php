@@ -2,7 +2,7 @@
 
 namespace FlyingLuscas\Correios\Domains\Correios\Cart;
 
-use Illuminate\Support\Collection;
+use DusanKasan\Knapsack\Collection;
 use FlyingLuscas\Correios\Contracts\CartInterface;
 
 class Cart implements CartInterface
@@ -10,7 +10,7 @@ class Cart implements CartInterface
     /**
      * Collection of items.
      *
-     * @var \Illuminate\Support\Collection
+     * @var \DusanKasan\Knapsack\Collection
      */
     protected $items;
 
@@ -34,7 +34,7 @@ class Cart implements CartInterface
      */
     public function __construct(Collection $collection = null)
     {
-        $this->items = $collection ?: new Collection;
+        $this->items = $collection ?: new Collection([]);
     }
 
     /**
@@ -58,9 +58,9 @@ class Cart implements CartInterface
      */
     public function getTotalWeight()
     {
-        return $this->items->sum(function ($item) {
+        return $this->items->map(function ($item) {
             return $item['weight'] * $item['quantity'];
-        });
+        })->sum();
     }
 
     /**
@@ -70,7 +70,9 @@ class Cart implements CartInterface
      */
     public function getMaxLength()
     {
-        return $this->items->max('length');
+        return $this->items->map(function ($item) {
+            return $item['length'];
+        })->max();
     }
 
     /**
@@ -80,9 +82,9 @@ class Cart implements CartInterface
      */
     public function getTotalHeight()
     {
-        return $this->items->sum(function ($item) {
+        return $this->items->map(function ($item) {
             return $item['height'] * $item['quantity'];
-        });
+        })->sum();
     }
 
     /**
@@ -92,7 +94,9 @@ class Cart implements CartInterface
      */
     public function getMaxWidth()
     {
-        return $this->items->max('width');
+        return $this->items->map(function ($item) {
+            return $item['width'];
+        })->max();
     }
 
     /**
@@ -124,7 +128,7 @@ class Cart implements CartInterface
             return in_array($key, array_keys($this->default));
         }, ARRAY_FILTER_USE_KEY);
 
-        $this->items->push(array_merge($this->default, $item));
+        $this->items = $this->items->append(array_merge($this->default, $item));
 
         return $this;
     }
@@ -136,6 +140,6 @@ class Cart implements CartInterface
      */
     public function all()
     {
-        return $this->items->all();
+        return $this->items->toArray();
     }
 }
