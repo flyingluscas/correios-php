@@ -25,7 +25,7 @@ class Roll extends AbstractContainer
 
     const BASE = ['length' => 18, 'diameter' => 5];
 
-    public function __construct(array $dimensions =  self::BASE)
+    public function __construct(array $dimensions = self::BASE)
     {
         parent::__construct($dimensions);
     }
@@ -38,14 +38,17 @@ class Roll extends AbstractContainer
      */
     public function validateDimensions(array $dimensions)
     {
-        if(!isset($dimensions['length']) || !isset($dimensions['diameter'])) {
+        if (!isset($dimensions['length']) || !isset($dimensions['diameter'])) {
             throw new MissingContainerDimensionException;
-        } else if(
-            !($this->isBetween($dimensions['diameter'], $this->minDimensions['diameter'], $this->maxDimensions['diameter'])) ||
+        } elseif (!($this->isBetween(
+            $dimensions['diameter'],
+            $this->minDimensions['diameter'],
+            $this->maxDimensions['diameter']
+        )) ||
             !($this->isBetween($dimensions['length'], $this->minDimensions['length'], $this->maxDimensions['length']))
         ) {
             throw new InvalidContainerDimensionsException;
-        } else if(($this->getDiameter() + $this->getLength()) > 200) {
+        } elseif (($this->getDiameter() + $this->getLength()) > 200) {
             throw new OverflowMaxContainerSizeException(
                 200,
                 ($this->getDiameter() + $this->getLength())

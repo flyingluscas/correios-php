@@ -4,8 +4,8 @@ namespace FlyingLuscas\Correios\Support;
 
 use FlyingLuscas\Correios\Domains\Correios\Cart\Cart;
 use FlyingLuscas\Correios\Domains\Correios\Freight\Freight;
+use FlyingLuscas\Correios\Domains\Correios\Freight\Url;
 use Mockery;
-use FlyingLuscas\Correios\Url;
 use FlyingLuscas\Correios\TestCase;
 
 class FreightUrlBuilderTest extends TestCase

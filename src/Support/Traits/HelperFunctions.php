@@ -19,13 +19,14 @@ trait HelperFunctions
      */
     public function isBetween($value, $start, $end, $inclusive = true)
     {
-        if($value == null || $start == null || $end == null) {
+        if ($value == null || $start == null || $end == null) {
             return false;
         } else {
-            if(!$inclusive)
+            if (!$inclusive) {
                 return ($value > $start) && ($value < $end);
-            else
+            } else {
                 return ($value >= $start) && ($value <= $end);
+            }
         }
     }
 }

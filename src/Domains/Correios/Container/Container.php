@@ -1,6 +1,7 @@
 <?php
 
 namespace FlyingLuscas\Correios\Domains\Correios\Container;
+
 use FlyingLuscas\Correios\Exceptions\InvalidContainerDimensionsException;
 
 /**

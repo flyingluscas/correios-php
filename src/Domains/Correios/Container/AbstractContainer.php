@@ -161,9 +161,10 @@ abstract class AbstractContainer implements Container
      */
     public function fill(array $dimensions)
     {
-        foreach($dimensions as $property => $value) {
-            if(in_array($property, ['width', 'height', 'length', 'diameter']))
+        foreach ($dimensions as $property => $value) {
+            if (in_array($property, ['width', 'height', 'length', 'diameter'])) {
                 $this->{$property} = $value;
+            }
         }
     }
 
