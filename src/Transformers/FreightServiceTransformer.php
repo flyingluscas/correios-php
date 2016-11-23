@@ -24,11 +24,7 @@ class FreightServiceTransformer implements TransformerInterface
             return [$this->service($data['Servicos']['cServico'])];
         }
 
-        foreach ($data['Servicos']['cServico'] as $service) {
-            $results[] = $this->service($service);
-        }
-
-        return $results;
+        return array_map([$this, 'service'], $data['Servicos']['cServico']);
     }
 
     /**
