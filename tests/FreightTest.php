@@ -18,15 +18,11 @@ class FreightTest extends TestCase
             new Response(200, [], file_get_contents($sample))
         );
 
-        $urlBuilder = Mockery::mock(FreightUrlBuilder::class, function ($mock) {
-            $mock->shouldReceive('makeUrl')->andReturn('some_dummy_url');
-        });
-
         $freight = new Freight(null, $http);
         $freight->setZipCodes('00000-000', '99999-999');
         $freight->cart->fill($this->items(5));
 
-        $this->assertEquals($expected, $freight->calculate(null, $urlBuilder));
+        $this->assertEquals($expected, $freight->calculate());
     }
 
     /**
