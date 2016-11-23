@@ -5,9 +5,9 @@ namespace FlyingLuscas\Correios;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Collection;
+use FlyingLuscas\Correios\Support\FreightUrl;
 use FlyingLuscas\Correios\Contracts\CartInterface;
 use FlyingLuscas\Correios\Transformers\Transformer;
-use FlyingLuscas\Correios\Support\FreightUrlBuilder;
 use FlyingLuscas\Correios\Contracts\UrlBuilderInterface;
 use FlyingLuscas\Correios\Contracts\TransformerInterface;
 use FlyingLuscas\Correios\Transformers\FreightServiceTransformer;
@@ -112,16 +112,33 @@ class Freight
      * to calculate the price and deadline of the freight.
      *
      * @param  TransformerInterface|null $transformer
-     * @param  UrlBuilderInterface|null  $urlBuilder
      *
      * @return array
      */
-    public function calculate(TransformerInterface $transformer = null, UrlBuilderInterface $urlBuilder = null)
+    public function calculate(TransformerInterface $transformer = null)
     {
-        $urlBuilder = $urlBuilder ?: new FreightUrlBuilder($this);
-        $transformer = $transformer ?: new FreightServiceTransformer;
+        $parameters['nCdEmpresa'] = $this->getCompanyCode();
+        $parameters['sDsSenha'] = $this->getCompanyPassword();
+        $parameters['nCdServico'] = implode(',', $this->getServices());
+        $parameters['sCepOrigem'] = $this->getOriginZipCode();
+        $parameters['sCepDestino'] = $this->getDestinyZipCode();
+        $parameters['nCdFormato'] = $this->getFormat();
+        $parameters['nVlComprimento'] = $this->cart->getMaxLength();
+        $parameters['nVlAltura'] = $this->cart->getTotalHeight();
+        $parameters['nVlLargura'] = $this->cart->getMaxWidth();
+        $parameters['nVlDiametro'] = 0;
+        $parameters['sCdMaoPropria'] = $this->getOwnHand();
+        $parameters['nVlValorDeclarado'] = $this->getDeclaredValue();
+        $parameters['sCdAvisoRecebimento'] = $this->getNoticeOfReceipt();
 
-        $response = $this->http->request('GET', $urlBuilder->makeUrl());
+        $volume = $this->cart->getTotalVolume();
+        $weight = $this->cart->getTotalWeight();
+
+        $parameters['nVlPeso'] = ($volume < 10 || $volume <= $weight ? $weight : $volume);
+
+        $response = $this->http->request('GET', sprintf('%s?%s', Url::PRICE_DEADLINE, http_build_query($parameters)));
+
+        $transformer = $transformer ?: new FreightServiceTransformer;
 
         return $this->transform($response->getBody()->getContents(), $transformer);
     }
