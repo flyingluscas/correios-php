@@ -18,7 +18,7 @@ class FreightServiceTransformer implements TransformerInterface
      */
     public function transform($xml)
     {
-        $data = $this->convertXMLToArray($xml);
+        $data = $this->toArray($xml);
 
         if (array_key_exists('Codigo', $data['Servicos']['cServico'])) {
             return [$this->service($data['Servicos']['cServico'])];

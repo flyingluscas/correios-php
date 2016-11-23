@@ -13,9 +13,9 @@ trait XMLParser
      *
      * @return array
      */
-    public function convertXMLToArray($xml)
+    public function toArray($xml)
     {
-        return json_decode($this->convertXMLToJson($xml), true);
+        return json_decode($this->toJson($xml), true);
     }
 
     /**
@@ -25,7 +25,7 @@ trait XMLParser
      *
      * @return string
      */
-    public function convertXMLToJson($xml)
+    public function toJson($xml)
     {
         if (! $this->isValidXML($xml)) {
             throw new InvalidXMLStringException;

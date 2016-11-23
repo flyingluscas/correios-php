@@ -15,7 +15,7 @@ class XMLParserTest extends TestCase
     {
         $mock = $this->getMockForTrait(XMLParser::class);
 
-        $this->assertEquals($expected, $mock->convertXMLToJson($string));
+        $this->assertEquals($expected, $mock->toJson($string));
     }
 
     /**
@@ -26,7 +26,7 @@ class XMLParserTest extends TestCase
     {
         $mock = $this->getMockForTrait(XMLParser::class);
 
-        $this->assertEquals($expected, $mock->convertXMLToArray($string));
+        $this->assertEquals($expected, $mock->toArray($string));
     }
 
     /**
@@ -36,7 +36,7 @@ class XMLParserTest extends TestCase
     {
         $this->setExpectedException(InvalidXMLStringException::class);
 
-        $this->getMockForTrait(XMLParser::class)->convertXMLToJson('');
+        $this->getMockForTrait(XMLParser::class)->toJson('');
     }
 
     public function provideValidXMLStringToArray()
