@@ -29,7 +29,6 @@ $freight = new Freight;
 
 $freight->setServices(Service::SEDEX, Service::PAC);
 $freight->setZipCodes('01001-000', '87047-230');
-$freight->setFormat(Format::BOX);
 
 $freight->cart->fill([
     [
