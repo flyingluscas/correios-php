@@ -73,7 +73,7 @@ abstract class TestCase extends PHPUnitTestCase
                 __DIR__.'/Samples/SingleService.xml',
                 [
                     [
-                        'service' => Service::SEDEX,
+                        'code' => Service::SEDEX,
                         'value' => 16.10,
                         'deadline' => 1,
                         'own_hand_value' => 0.0,
@@ -92,7 +92,7 @@ abstract class TestCase extends PHPUnitTestCase
                 __DIR__.'/Samples/ManyServices.xml',
                 [
                     [
-                        'service' => Service::SEDEX,
+                        'code' => Service::SEDEX,
                         'value' => 16.10,
                         'deadline' => 1,
                         'own_hand_value' => 0.0,
@@ -106,7 +106,7 @@ abstract class TestCase extends PHPUnitTestCase
                         ],
                     ],
                     [
-                        'service' => Service::PAC,
+                        'code' => Service::PAC,
                         'value' => 16.10,
                         'deadline' => 5,
                         'own_hand_value' => 0.0,

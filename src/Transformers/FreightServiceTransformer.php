@@ -37,7 +37,7 @@ class FreightServiceTransformer implements TransformerInterface
     protected function service(array $service)
     {
         return [
-            'service' => intval($service['Codigo']),
+            'code' => intval($service['Codigo']),
             'value' => floatval(str_replace(',', '.', $service['Valor'])),
             'deadline' => intval($service['PrazoEntrega']),
             'own_hand_value' => floatval(str_replace(',', '.', $service['ValorMaoPropria'])),
