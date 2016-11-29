@@ -8,7 +8,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-PHP SDK to interact with the [Correios](http://www.correios.com.br) webservice.
+An easy way to use the [Correios](http://www.correios.com.br) freight calculation for multiple items.
 
 ## Install
 
