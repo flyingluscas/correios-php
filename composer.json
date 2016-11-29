@@ -1,7 +1,7 @@
 {
     "name": "flyingluscas/correios-php",
     "type": "library",
-    "description": "Correios PHP SDK",
+    "description": "An easy way to use the Correios freight calculation for multiple items.",
     "keywords": [
         "flyingluscas",
         "correios-php",
