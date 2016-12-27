@@ -8,7 +8,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Uma maneira fácil de usar o cálculo de fretes dos [Correios] (http://www.correios.com.br) para vários itens.
+Uma maneira fácil de usar o cálculo de frete dos [Correios] (http://www.correios.com.br) para vários itens.
 
 ## Instalação
 
