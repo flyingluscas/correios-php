@@ -1,20 +1,20 @@
 # Changelog
 
-All Notable changes to `correios-php` will be documented in this file.
+Todas as mudanças importantes em `correios-php` serão documentadas neste arquivo.
 
-Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
+Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
 ## v1.1.1 - 2016-11-23
 
 ### Changed
-- Services array structure when calculating the freight
+- Estrutura do array de resposta quando calculando o frete foi alterada.
 
 ## v0.1.1 - 2016-11-21
 
 ### Fixed
-- Remove Laravel collection for more compatibility
+- Laravel Collection removida resolvendo problemas de compatibilidade.
 
 ## v0.1.0 - 2016-11-15
 
 ### Added
-- Freight calculation
+- Cálculo de frete
