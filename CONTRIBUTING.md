@@ -1,4 +1,4 @@
-# Contributing
+# Contribuindo
 
 Contribuições são **bem vindas** e serão totalmente **creditadas**.
 
@@ -18,7 +18,7 @@ Nós aceitamos contribuições via **Pull Requests** no [Github](https://github.
 
 - **Uma PR por funcionalidade** - Se você quiser fazer mais do que uma coisa, envie várias PRs.
 
-## Rodando testes
+## Testando
 
 ``` bash
 $ composer test
