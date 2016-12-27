@@ -1,7 +1,7 @@
 {
     "name": "flyingluscas/correios-php",
     "type": "library",
-    "description": "An easy way to use the Correios freight calculation for multiple items.",
+    "description": "Uma maneira fácil de usar o cálculo de fretes dos Correios para vários itens.",
     "keywords": [
         "flyingluscas",
         "correios-php",
