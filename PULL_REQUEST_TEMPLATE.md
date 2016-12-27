@@ -11,7 +11,7 @@ ou `closes #num`, a issue será automaticamente fechada quando a PR for aceita.)
 
 ## Como isso foi testado?
 
-Por favor descreva em detalhes como você testou suas mudanças.
+Por favor descreva em detalhes como você testou suas alterações.
 
 Inclua detalhes do seu ambiente de teste e os testes executados
 para ver como sua mudança afeta outras áreas do código, etc.

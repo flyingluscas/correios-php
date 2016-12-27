@@ -8,9 +8,9 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-An easy way to use the [Correios](http://www.correios.com.br) freight calculation for multiple items.
+Uma maneira fácil de usar o cálculo de fretes dos [Correios] (http://www.correios.com.br) para vários itens.
 
-## Install
+## Instalação
 
 Via Composer
 
@@ -18,7 +18,7 @@ Via Composer
 $ composer require flyingluscas/correios-php
 ```
 
-## Usage
+## Uso
 
 ``` php
 use FlyingLuscas\Correios\Format;
@@ -52,30 +52,30 @@ $results = $freight->calculate();
 
 ## Change log
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Consulte [CHANGELOG](CHANGELOG.md) para obter mais informações sobre o que mudou recentemente.
 
-## Testing
+## Testando
 
 ``` bash
 $ composer test
 ```
 
-## Contributing
+## Contribuindo
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
+Consulte [CONTRIBUTING](CONTRIBUTING.md) para obter mais detalhes.
 
-## Security
+## Segurança
 
-If you discover any security related issues, please email lucas.pires.mattos@gmail.com instead of using the issue tracker.
+Se você descobrir quaisquer problemas relacionados à segurança, envie um e-mail para lucas.pires.mattos@gmail.com em vez de usar as issues.
 
-## Credits
+## Créditos
 
 - [Lucas Pires][link-author]
-- [All Contributors][link-contributors]
+- [Todos os contribuidores][link-contributors]
 
-## License
+## Licença
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+A Licença MIT (MIT). Consulte o [arquivo de licença](LICENSE.md) para obter mais informações.
 
 [ico-version]: https://img.shields.io/packagist/v/flyingluscas/correios-php.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
