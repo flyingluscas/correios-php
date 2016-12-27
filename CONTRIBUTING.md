@@ -1,29 +1,27 @@
 # Contributing
 
-Contributions are **welcome** and will be fully **credited**.
+Contribuições são **bem vindas** e serão totalmente **creditadas**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/flyingluscas/correios-php).
+Nós aceitamos contribuições via **Pull Requests** no [Github](https://github.com/flyingluscas/correios-php).
 
 ## Pull Requests
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - Check the code style with ``$ composer check-style`` and fix it with ``$ composer fix-style``.
+- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - Verifique o estilo do código com ``$ composer check-style`` e corrija com ``$ composer fix-style``.
 
-- **Add tests!** - Your patch won't be accepted if it doesn't have tests.
+- **Adicione testes!** - Sua PR não será aceita se não tiver testes.
 
-- **Document any change in behaviour** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
+- **Documentar qualquer alteração no comportamento** - Certifique-se de que o `README.md` e qualquer outra documentação relevante sejam mantidos atualizados.
 
-- **Consider our release cycle** - We try to follow [SemVer v2.0.0](http://semver.org/). Randomly breaking public APIs is not an option.
+- **Considere o nosso ciclo de lançamento** - Nós tentamos seguir [SemVer v2.0.0](http://semver.org/).
 
-- **Create feature branches** - Don't ask us to pull from your master branch.
+- **Crie branches para suas alterações** - Não nos envie PRs do seu branch master.
 
-- **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
+- **Uma PR por funcionalidade** - Se você quiser fazer mais do que uma coisa, envie várias PRs.
 
-- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](http://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
-
-## Running Tests
+## Rodando testes
 
 ``` bash
 $ composer test
 ```
 
-**Happy coding**!
+**Bora coda**!
