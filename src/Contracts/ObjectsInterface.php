@@ -10,4 +10,11 @@ interface ObjectsInterface
      * @return int|float
      */
     public function width();
+
+    /**
+     * Recupera a altura total de todos os objetos.
+     *
+     * @return int|float
+     */
+    public function height();
 }

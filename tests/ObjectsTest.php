@@ -32,4 +32,16 @@ class ObjectsTest extends TestCase
 
         $this->assertEquals(3, $objects->width());
     }
+
+    /** @test */
+    public function can_get_the_total_height_of_all_objects()
+    {
+        $objects = new Objects([
+            ['height' => 1, 'quantity' => 1],
+            ['height' => 2, 'quantity' => 1],
+            ['height' => 3, 'quantity' => 2],
+        ]);
+
+        $this->assertEquals(9, $objects->height());
+    }
 }

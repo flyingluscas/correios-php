@@ -68,4 +68,16 @@ class Objects implements ObjectsInterface
             return $item['width'];
         }, $this->items));
     }
+
+    /**
+     * Recupera a altura total de todos os objetos.
+     *
+     * @return int|float
+     */
+    public function height()
+    {
+        return array_sum(array_map(function ($item) {
+            return $item['height'] * $item['quantity'];
+        }, $this->items));
+    }
 }
