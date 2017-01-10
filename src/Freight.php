@@ -2,7 +2,7 @@
 
 namespace FlyingLuscas\Correios;
 
-use FlyingLuscas\Correios\Contracts\ObjectsInterface;
+use FlyingLuscas\Correios\Contracts\FreightObjectsInterface;
 
 class Freight
 {
@@ -30,16 +30,16 @@ class Freight
     /**
      * Objetos e suas dimensões.
      *
-     * @var \FlyingLuscas\Correios\Contracts\ObjectsInterface
+     * @var \FlyingLuscas\Correios\Contracts\FreightObjectsInterface
      */
     public $objects;
 
     /**
      * Create a new class instance.
      *
-     * @param ObjectsInterface|null $objects
+     * @param FreightObjectsInterface|null $objects
      */
-    public function __construct(ObjectsInterface $objects = null)
+    public function __construct(FreightObjectsInterface $objects = null)
     {
         $this->objects = $objects ?: new Objects;
     }

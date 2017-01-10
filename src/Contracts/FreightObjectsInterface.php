@@ -2,7 +2,7 @@
 
 namespace FlyingLuscas\Correios\Contracts;
 
-interface ObjectsInterface
+interface FreightObjectsInterface
 {
     /**
      * Recupera a maior lagura entre os objetos.

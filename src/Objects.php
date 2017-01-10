@@ -2,9 +2,9 @@
 
 namespace FlyingLuscas\Correios;
 
-use FlyingLuscas\Correios\Contracts\ObjectsInterface;
+use FlyingLuscas\Correios\Contracts\FreightObjectsInterface;
 
-class Objects implements ObjectsInterface
+class Objects implements FreightObjectsInterface
 {
     /**
      * Array de objetos e suas dimensões.
