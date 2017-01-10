@@ -31,4 +31,11 @@ interface ObjectsInterface
      * @return int|float
      */
     public function weight();
+
+    /**
+     * Recupera o volume total de todos os objetos.
+     *
+     * @return int|float
+     */
+    public function volume();
 }

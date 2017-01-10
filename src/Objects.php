@@ -104,4 +104,14 @@ class Objects implements ObjectsInterface
             return $item['weight'] * $item['quantity'];
         }, $this->items));
     }
+
+    /**
+     * Recupera o volume total de todos os objetos.
+     *
+     * @return int|float
+     */
+    public function volume()
+    {
+        return ($this->length() * $this->width() * $this->height()) / 6000;
+    }
 }

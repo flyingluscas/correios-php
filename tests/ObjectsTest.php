@@ -68,4 +68,16 @@ class ObjectsTest extends TestCase
 
         $this->assertEquals(9, $objects->weight());
     }
+
+    /** @test */
+    public function can_get_the_total_volume_of_the_objects()
+    {
+        $objects = new Objects([
+            ['width' => 1, 'height' => 1, 'length' => 1, 'weight' => 1, 'quantity' => 1],
+            ['width' => 2, 'height' => 2, 'length' => 2, 'weight' => 2, 'quantity' => 1],
+            ['width' => 3, 'height' => 3, 'length' => 3, 'weight' => 3, 'quantity' => 2],
+        ]);
+
+        $this->assertEquals(0.0135, $objects->volume());
+    }
 }
