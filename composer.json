@@ -23,14 +23,14 @@
     ],
     "require": {
         "php": "~5.6|~7.0",
-        "dusank/knapsack": "~8.3",
         "guzzlehttp/guzzle": "~6.2"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "0.3.*",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0||~5.0",
-        "squizlabs/php_codesniffer": "~2.3"
+        "phpunit/php-token-stream": "~1.4",
+        "squizlabs/php_codesniffer": "~2.3",
+        "codeclimate/php-test-reporter": "0.3.*"
     },
     "autoload": {
         "psr-4": {
@@ -43,7 +43,7 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
+        "test": "phpunit --colors=always",
         "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src",
         "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src"
     },

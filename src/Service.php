@@ -5,27 +5,27 @@ namespace FlyingLuscas\Correios;
 abstract class Service
 {
     /**
-     * PAC.
+     * Código de serviço do PAC.
      */
     const PAC = 41106;
 
     /**
-     * Sedex.
+     * Código de serviço do Sedex.
      */
     const SEDEX = 40010;
 
     /**
-     * Sedex a Cobrar.
+     * Código de serviço do Sedex a cobrar.
      */
     const SEDEX_A_COBRAR = 40045;
 
     /**
-     * Sedex 10.
+     * Código de serviço do Sedex 10.
      */
     const SEDEX_10 = 40215;
 
     /**
-     * Sedex Hoje.
+     * Código de serviço do Sedex hoje.
      */
     const SEDEX_HOJE = 40290;
 }

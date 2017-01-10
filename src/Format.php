@@ -5,17 +5,17 @@ namespace FlyingLuscas\Correios;
 abstract class Format
 {
     /**
-     * Box format.
+     * Caixa ou pacote.
      */
     const BOX = 1;
 
     /**
-     * Roll format.
+     * Rolo ou prisma.
      */
     const ROLL = 2;
 
     /**
-     * Envelope format.
+     * Envelope.
      */
     const ENVELOPE = 3;
 }

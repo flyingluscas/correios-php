@@ -5,17 +5,17 @@ namespace FlyingLuscas\Correios;
 abstract class Url
 {
     /**
-     * Price url.
+     * Url para cálculo de preços dos Correios.
      */
     const PRICE = '//ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco';
 
     /**
-     * Deadline url.
+     * Url para cálculo de prazos dos Correios.
      */
     const DEADLINE = '//ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrazo';
 
     /**
-     * Price and deadline url.
+     * Url para cálculo de preços e prazos dos Correios.
      */
     const PRICE_DEADLINE = '//ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo';
 }
