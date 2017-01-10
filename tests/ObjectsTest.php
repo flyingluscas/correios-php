@@ -34,7 +34,7 @@ class ObjectsTest extends TestCase
     }
 
     /** @test */
-    public function can_get_the_total_height_of_all_objects()
+    public function can_get_the_total_height_of_the_objects()
     {
         $objects = new Objects([
             ['height' => 1, 'quantity' => 1],
@@ -55,5 +55,17 @@ class ObjectsTest extends TestCase
         ]);
 
         $this->assertEquals(3, $objects->length());
+    }
+
+    /** @test */
+    public function can_get_the_total_weight_of_the_objects()
+    {
+        $objects = new Objects([
+            ['weight' => 1, 'quantity' => 1],
+            ['weight' => 2, 'quantity' => 1],
+            ['weight' => 3, 'quantity' => 2],
+        ]);
+
+        $this->assertEquals(9, $objects->weight());
     }
 }

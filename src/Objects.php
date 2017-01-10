@@ -92,4 +92,16 @@ class Objects implements ObjectsInterface
             return $item['length'];
         }, $this->items));
     }
+
+    /**
+     * Recupera o peso total de todos os objetos.
+     *
+     * @return int|float
+     */
+    public function weight()
+    {
+        return array_sum(array_map(function ($item) {
+            return $item['weight'] * $item['quantity'];
+        }, $this->items));
+    }
 }

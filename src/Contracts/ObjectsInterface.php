@@ -24,4 +24,11 @@ interface ObjectsInterface
      * @return int|float
      */
     public function length();
+
+    /**
+     * Recupera o peso total de todos os objetos.
+     *
+     * @return int|float
+     */
+    public function weight();
 }
