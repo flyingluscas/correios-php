@@ -11,6 +11,10 @@ class Freight
      */
     protected $services;
 
+    protected $originZipCode;
+
+    protected $destinyZipCode;
+
     /**
      * Códigos dos serviços (Sedex, PAC...) a serem calculados.
      *
@@ -33,5 +37,23 @@ class Freight
     public function getServices()
     {
         return $this->services;
+    }
+
+    public function setZipCodes($origin, $destiny)
+    {
+        $this->originZipCode = preg_replace('/[^0-9]/', null, $origin);
+        $this->destinyZipCode = preg_replace('/[^0-9]/', null, $destiny);
+
+        return $this;
+    }
+
+    public function getOriginZipCode()
+    {
+        return $this->originZipCode;
+    }
+
+    public function getDestinyZipCode()
+    {
+        return $this->destinyZipCode;
     }
 }
