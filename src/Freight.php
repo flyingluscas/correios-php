@@ -11,8 +11,18 @@ class Freight
      */
     protected $services;
 
+    /**
+     * CEP de origin.
+     *
+     * @var string
+     */
     protected $originZipCode;
 
+    /**
+     * CEP de destino.
+     *
+     * @var string
+     */
     protected $destinyZipCode;
 
     /**
@@ -39,6 +49,14 @@ class Freight
         return $this->services;
     }
 
+    /**
+     * CEP de origin e destino.
+     *
+     * @param string $origin
+     * @param string $destiny
+     *
+     * @return self
+     */
     public function setZipCodes($origin, $destiny)
     {
         $this->originZipCode = preg_replace('/[^0-9]/', null, $origin);
@@ -47,11 +65,21 @@ class Freight
         return $this;
     }
 
+    /**
+     * Recupera CEP de origin.
+     *
+     * @return string
+     */
     public function getOriginZipCode()
     {
         return $this->originZipCode;
     }
 
+    /**
+     * Recupera CEP de destino.
+     *
+     * @return string
+     */
     public function getDestinyZipCode()
     {
         return $this->destinyZipCode;
