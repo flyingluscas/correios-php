@@ -12,7 +12,7 @@ class Freight
     protected $services;
 
     /**
-     * CEP de origin.
+     * CEP de origem.
      *
      * @var string
      */
@@ -32,7 +32,7 @@ class Freight
      *
      * @return self
      */
-    public function setServices(...$service)
+    public function services(...$service)
     {
         $this->services = implode(',', $service);
 
@@ -50,14 +50,14 @@ class Freight
     }
 
     /**
-     * CEP de origin e destino.
+     * CEP de origem e destino.
      *
      * @param string $origin
      * @param string $destiny
      *
      * @return self
      */
-    public function setZipCodes($origin, $destiny)
+    public function zipCodes($origin, $destiny)
     {
         $this->originZipCode = preg_replace('/[^0-9]/', null, $origin);
         $this->destinyZipCode = preg_replace('/[^0-9]/', null, $destiny);
@@ -66,7 +66,7 @@ class Freight
     }
 
     /**
-     * Recupera CEP de origin.
+     * Recupera CEP de origem.
      *
      * @return string
      */
