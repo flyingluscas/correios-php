@@ -2,6 +2,8 @@
 
 namespace FlyingLuscas\Correios;
 
+use FlyingLuscas\Correios\Contracts\ObjectsInterface;
+
 class Freight
 {
     /**
@@ -24,6 +26,23 @@ class Freight
      * @var string
      */
     protected $destinyZipCode;
+
+    /**
+     * Objetos e suas dimensões.
+     *
+     * @var \FlyingLuscas\Correios\Contracts\ObjectsInterface
+     */
+    public $objects;
+
+    /**
+     * Create a new class instance.
+     *
+     * @param ObjectsInterface|null $objects
+     */
+    public function __construct(ObjectsInterface $objects = null)
+    {
+        $this->objects = $objects ?: new Objects;
+    }
 
     /**
      * Códigos dos serviços (Sedex, PAC...) a serem calculados.
