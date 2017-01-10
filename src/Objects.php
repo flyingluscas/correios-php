@@ -80,4 +80,16 @@ class Objects implements ObjectsInterface
             return $item['height'] * $item['quantity'];
         }, $this->items));
     }
+
+    /**
+     * Recupera o maior comprimento entre os objetos.
+     *
+     * @return int|float
+     */
+    public function length()
+    {
+        return max(array_map(function ($item) {
+            return $item['length'];
+        }, $this->items));
+    }
 }

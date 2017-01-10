@@ -44,4 +44,16 @@ class ObjectsTest extends TestCase
 
         $this->assertEquals(9, $objects->height());
     }
+
+    /** @test */
+    public function can_get_the_biggest_length_of_all_objects()
+    {
+        $objects = new Objects([
+            ['length' => 1],
+            ['length' => 2],
+            ['length' => 3],
+        ]);
+
+        $this->assertEquals(3, $objects->length());
+    }
 }
