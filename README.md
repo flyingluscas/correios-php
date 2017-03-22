@@ -1,5 +1,7 @@
 # Correios PHP SDK
 
+## THIS VERSION IS UNDER DEVELOPMENT
+
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
