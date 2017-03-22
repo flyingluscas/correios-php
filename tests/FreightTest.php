@@ -23,6 +23,13 @@ class FreightTest extends TestCase
         ], $this->freight->origin('99999-999')->payload());
     }
 
+    public function testSetDestination()
+    {
+        $this->assertArraySubset([
+            'sCepDestino' => '99999999',
+        ], $this->freight->destination('99999-999')->payload());
+    }
+
     public function testSetServices()
     {
         $pac = Service::PAC;

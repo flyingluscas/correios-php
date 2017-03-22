@@ -4,7 +4,19 @@ namespace FlyingLuscas\Correios;
 
 class Freight
 {
+    /**
+     * CEP de origem.
+     *
+     * @var string
+     */
     protected $origin;
+
+    /**
+     * CEP de destino.
+     *
+     * @var string
+     */
+    protected $destination;
 
     /**
      * Serviços (Sedex, PAC...)
@@ -13,9 +25,30 @@ class Freight
      */
     protected $services;
 
+    /**
+     * CEP de origem.
+     *
+     * @param  string $zipCode
+     *
+     * @return self
+     */
     public function origin($zipCode)
     {
         $this->origin = preg_replace('/[^0-9]/', null, $zipCode);
+
+        return $this;
+    }
+
+    /**
+     * CEP de destino.
+     *
+     * @param  string $zipCode
+     *
+     * @return self
+     */
+    public function destination($zipCode)
+    {
+        $this->destination = preg_replace('/[^0-9]/', null, $zipCode);
 
         return $this;
     }
@@ -44,6 +77,7 @@ class Freight
         return [
             'sCepOrigem' => $this->origin,
             'nCdServico' => $this->services,
+            'sCepDestino' => $this->destination,
         ];
     }
 }
