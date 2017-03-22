@@ -3,7 +3,7 @@
 namespace FlyingLuscas\Correios;
 
 use Mockery;
-use PHPUnit\Framework\TestCase as BaseTestCase;
+use PHPUnit_Framework_TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
