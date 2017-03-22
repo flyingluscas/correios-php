@@ -23,33 +23,18 @@ $ composer require flyingluscas/correios-php
 ## Uso
 
 ``` php
-use FlyingLuscas\Correios\Format;
-use FlyingLuscas\Correios\Freight;
 use FlyingLuscas\Correios\Service;
+use FlyingLuscas\Correios\Correios;
 
-$freight = new Freight;
-
-$freight->setServices(Service::SEDEX, Service::PAC);
-$freight->setZipCodes('01001-000', '87047-230');
-
-$freight->cart->fill([
-    [
-        'width' => 16,
-        'height' => 16,
-        'length' => 16,
-        'weight' => 0.3,
-        'quantity' => 1,
-    ],
-    [
-        'width' => 16,
-        'height' => 16,
-        'length' => 16,
-        'weight' => 0.3,
-        'quantity' => 3,
-    ],
-]);
-
-$results = $freight->calculate();
+Correios::freight()
+    ->origin('01001-000')
+    ->destination('87047-230')
+    ->services(Service::SEDEX, Service::PAC)
+    ->items([
+        ['width' => 16, 'height' => 16, 'length' => 16, 'weight' => 0.3, 'quantity' => 1],
+        ['width' => 16, 'height' => 16, 'length' => 16, 'weight' => 0.3, 'quantity' => 3],
+    ])
+    ->calculate();
 ```
 
 ## Change log

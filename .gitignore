@@ -1,4 +1,5 @@
 docs
 build
 vendor
+index.php
 composer.lock
