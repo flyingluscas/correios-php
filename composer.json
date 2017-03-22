@@ -25,7 +25,6 @@
         "php": "~5.6|~7.0"
     },
     "require-dev": {
-        "mockery/mockery": "~0.9",
         "phpunit/phpunit": "~5.0",
         "squizlabs/php_codesniffer": "~2.3",
         "codeclimate/php-test-reporter": "~0.3"

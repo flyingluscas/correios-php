@@ -36,7 +36,26 @@ class FreightTest extends TestCase
         $sedex = Service::SEDEX;
 
         $this->assertArraySubset([
-            'nCdServico' => "{$sedex},{$pac}",
+            'nCdServico' => $sedex.','.$pac,
         ], $this->freight->services($sedex, $pac)->payload());
+    }
+
+    public function testPushItem()
+    {
+        $this->assertEquals([
+            ['width' => 1, 'height' => 1, 'length' => 1, 'weight' => 1, 'quantity' => 1],
+            ['width' => 1, 'height' => 1, 'length' => 1, 'weight' => 1, 'quantity' => 2],
+        ], $this->freight->item(1, 1, 1, 1, 1)->item(1, 1, 1, 1, 2)->items);
+    }
+
+    public function testItemsDimenionsCalculations()
+    {
+        $this->freight->item(1, 1, 1, 1, 1)->item(2, 1, 2, 1, 2);
+
+        $this->assertArraySubset([
+            'nVlAltura' => 3,
+            'nVlLargura' => 2,
+            'nVlComprimento' => 2,
+        ], $this->freight->payload());
     }
 }

@@ -5,25 +5,18 @@ namespace FlyingLuscas\Correios;
 class Freight
 {
     /**
-     * CEP de origem.
+     * Payload da requisição.
      *
-     * @var string
+     * @var array
      */
-    protected $origin;
+    protected $payload = [];
 
     /**
-     * CEP de destino.
+     * Objetos a serem transportados.
      *
-     * @var string
+     * @var array
      */
-    protected $destination;
-
-    /**
-     * Serviços (Sedex, PAC...)
-     *
-     * @var string
-     */
-    protected $services;
+    public $items = [];
 
     /**
      * CEP de origem.
@@ -34,7 +27,7 @@ class Freight
      */
     public function origin($zipCode)
     {
-        $this->origin = preg_replace('/[^0-9]/', null, $zipCode);
+        $this->payload['sCepOrigem'] = preg_replace('/[^0-9]/', null, $zipCode);
 
         return $this;
     }
@@ -48,7 +41,7 @@ class Freight
      */
     public function destination($zipCode)
     {
-        $this->destination = preg_replace('/[^0-9]/', null, $zipCode);
+        $this->payload['sCepDestino'] = preg_replace('/[^0-9]/', null, $zipCode);
 
         return $this;
     }
@@ -62,7 +55,7 @@ class Freight
      */
     public function services(...$services)
     {
-        $this->services = implode(',', $services);
+        $this->payload['nCdServico'] = implode(',', $services);
 
         return $this;
     }
@@ -74,10 +67,37 @@ class Freight
      */
     public function payload()
     {
-        return [
-            'sCepOrigem' => $this->origin,
-            'nCdServico' => $this->services,
-            'sCepDestino' => $this->destination,
-        ];
+        return $this->payload;
+    }
+
+    /**
+     * Objeto que será transportado.
+     *
+     * @param  int|float $width
+     * @param  int|float $height
+     * @param  int|float $length
+     * @param  int|float $weight
+     * @param  int       $quantity
+     *
+     * @return self
+     */
+    public function item($width, $height, $length, $weight, $quantity)
+    {
+        array_push($this->items, compact('width', 'height', 'length', 'weight', 'quantity'));
+
+
+        $this->payload['nVlAltura'] = array_sum(array_map(function ($item) {
+            return $item['height'] * $item['quantity'];
+        }, $this->items));
+
+        $this->payload['nVlLargura'] = max(array_map(function ($item) {
+            return $item['width'];
+        }, $this->items));
+
+        $this->payload['nVlComprimento'] = max(array_map(function ($item) {
+            return $item['length'];
+        }, $this->items));
+
+        return $this;
     }
 }
