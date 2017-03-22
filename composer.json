@@ -22,15 +22,13 @@
         }
     ],
     "require": {
-        "php": "~5.6|~7.0",
-        "dusank/knapsack": "~8.3",
-        "guzzlehttp/guzzle": "~6.2"
+        "php": "~5.6|~7.0"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "0.3.*",
-        "mockery/mockery": "0.9.*",
+        "mockery/mockery": "~0.9",
         "phpunit/phpunit": "~4.0||~5.0",
-        "squizlabs/php_codesniffer": "~2.3"
+        "squizlabs/php_codesniffer": "~2.3",
+        "codeclimate/php-test-reporter": "~0.3"
     },
     "autoload": {
         "psr-4": {
@@ -49,7 +47,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
         }
     },
     "config": {
