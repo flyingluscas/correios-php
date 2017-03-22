@@ -4,14 +4,32 @@ namespace FlyingLuscas\Correios;
 
 class FreightTest extends TestCase
 {
+    /**
+     * @var \FlyingLuscas\Correios\Freight
+     */
+    protected $freight;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->freight = Correios::freight();
+    }
+
+    public function testSetOrigin()
+    {
+        $this->assertArraySubset([
+            'sCepOrigem' => '99999999',
+        ], $this->freight->origin('99999-999')->payload());
+    }
+
     public function testSetServices()
     {
         $pac = Service::PAC;
         $sedex = Service::SEDEX;
-        $freight = Correios::freight()->services($sedex, $pac);
 
         $this->assertArraySubset([
             'nCdServico' => "{$sedex},{$pac}",
-        ], $freight->payload());
+        ], $this->freight->services($sedex, $pac)->payload());
     }
 }

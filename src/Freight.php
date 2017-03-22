@@ -4,12 +4,21 @@ namespace FlyingLuscas\Correios;
 
 class Freight
 {
+    protected $origin;
+
     /**
      * Serviços (Sedex, PAC...)
      *
-     * @var array
+     * @var string
      */
-    protected $services = [];
+    protected $services;
+
+    public function origin($zipCode)
+    {
+        $this->origin = preg_replace('/[^0-9]/', null, $zipCode);
+
+        return $this;
+    }
 
     /**
      * Serviços a serem calculados.
@@ -20,7 +29,7 @@ class Freight
      */
     public function services(...$services)
     {
-        $this->services = $services;
+        $this->services = implode(',', $services);
 
         return $this;
     }
@@ -33,7 +42,8 @@ class Freight
     public function payload()
     {
         return [
-            'nCdServico' => implode(',', $this->services),
+            'sCepOrigem' => $this->origin,
+            'nCdServico' => $this->services,
         ];
     }
 }
