@@ -2,6 +2,8 @@
 
 namespace FlyingLuscas\Correios;
 
+use FlyingLuscas\Correios\Contracts\CalculableFreightDimensions;
+
 class Freight
 {
     /**
@@ -14,9 +16,29 @@ class Freight
     /**
      * Objetos a serem transportados.
      *
-     * @var array
+     * @var \FlyingLuscas\Correios\Contracts\CalculableFreightDimensions
      */
-    public $items = [];
+    protected $items;
+
+    /**
+     * Creates a new class instance.
+     *
+     * @param CalculableFreightDimensions $items
+     */
+    public function __construct(CalculableFreightDimensions $items)
+    {
+        $this->items = $items;
+    }
+
+    /**
+     * Payload da requisição para o webservice dos Correios.
+     *
+     * @return array
+     */
+    public function payload()
+    {
+        return $this->payload;
+    }
 
     /**
      * CEP de origem.
@@ -61,12 +83,20 @@ class Freight
     }
 
     /**
-     * Payload da requisição para o webservice dos Correios.
+     * Dimensões, peso e quantidade do item.
      *
-     * @return array
+     * @param  int|float $width
+     * @param  int|float $height
+     * @param  int|float $length
+     * @param  int|float $weight
+     * @param  int       $quantity
+     *
+     * @return self
      */
-    public function payload()
+    public function item($width, $height, $length, $weight, $quantity = 1)
     {
-        return $this->payload;
+        $this->items[] = compact('width', 'height', 'length', 'weight', 'quantity');
+
+        return $this;
     }
 }

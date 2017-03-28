@@ -2,6 +2,9 @@
 
 namespace FlyingLuscas\Correios;
 
+use Mockery;
+use FlyingLuscas\Correios\Contracts\CalculableFreightDimensions;
+
 class FreightTest extends TestCase
 {
     /**
@@ -13,7 +16,9 @@ class FreightTest extends TestCase
     {
         parent::setUp();
 
-        $this->freight = Correios::freight();
+        $mock = Mockery::mock(CalculableFreightDimensions::class);
+
+        $this->freight = new Freight($mock);
     }
 
     public function testSetOrigin()
