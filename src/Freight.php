@@ -69,24 +69,4 @@ class Freight
     {
         return $this->payload;
     }
-
-    /**
-     * Objeto que será transportado.
-     *
-     * @param  int|float $width
-     * @param  int|float $height
-     * @param  int|float $length
-     * @param  int|float $weight
-     * @param  int       $quantity
-     *
-     * @return self
-     */
-    public function item($width, $height, $length, $weight, $quantity)
-    {
-        $this->items[] = compact(
-            'width', 'height', 'length', 'weight', 'quantity'
-        );
-
-        return $this;
-    }
 }
