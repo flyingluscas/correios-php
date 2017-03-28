@@ -83,20 +83,9 @@ class Freight
      */
     public function item($width, $height, $length, $weight, $quantity)
     {
-        array_push($this->items, compact('width', 'height', 'length', 'weight', 'quantity'));
-
-
-        $this->payload['nVlAltura'] = array_sum(array_map(function ($item) {
-            return $item['height'] * $item['quantity'];
-        }, $this->items));
-
-        $this->payload['nVlLargura'] = max(array_map(function ($item) {
-            return $item['width'];
-        }, $this->items));
-
-        $this->payload['nVlComprimento'] = max(array_map(function ($item) {
-            return $item['length'];
-        }, $this->items));
+        $this->items[] = compact(
+            'width', 'height', 'length', 'weight', 'quantity'
+        );
 
         return $this;
     }
