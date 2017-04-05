@@ -2,6 +2,8 @@
 
 namespace FlyingLuscas\Correios\Services;
 
+use Mockery;
+use GuzzleHttp\ClientInterface;
 use FlyingLuscas\Correios\Service;
 use FlyingLuscas\Correios\TestCase;
 
@@ -16,7 +18,9 @@ class FreightTest extends TestCase
     {
         parent::setUp();
 
-        $this->freight = new Freight;
+        $http = Mockery::mock(ClientInterface::class);
+
+        $this->freight = new Freight($http);
     }
 
     public function testSetOrigin()

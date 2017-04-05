@@ -2,6 +2,11 @@
 
 namespace FlyingLuscas\Correios\Services;
 
+use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use FlyingLuscas\Correios\WebService;
+
 class Freight
 {
     /**
@@ -19,13 +24,47 @@ class Freight
     protected $items = [];
 
     /**
+     * HTTP Client.
+     *
+     * @var \GuzzleHttp\ClientInterface
+     */
+    protected $http;
+
+    /**
+     * Creates a new class instance.
+     *
+     * @param ClientInterface $http
+     */
+    public function __construct(ClientInterface $http)
+    {
+        $this->http = $http;
+    }
+
+    /**
      * Payload da requisição para o webservice dos Correios.
      *
      * @return array
      */
     public function payload()
     {
-        return $this->setFreightDimensions()->payload;
+        $this->setFreightDimensions();
+
+        return array_merge([
+            'nCdEmpresa' => '',
+            'sDsSenha' => '',
+            'nCdServico' => '',
+            'sCepOrigem' => '',
+            'sCepDestino' => '',
+            'nCdFormato' => 1,
+            'nVlLargura' => 0,
+            'nVlAltura' => 0,
+            'nVlPeso' => 0,
+            'nVlComprimento' => 0,
+            'nVlDiametro' => 0,
+            'sCdMaoPropria' => 0,
+            'nVlValorDeclarado' => 0,
+            'sCdAvisoRecebimento' => 0,
+        ], $this->payload);
     }
 
     /**
@@ -65,7 +104,7 @@ class Freight
      */
     public function services(...$services)
     {
-        $this->payload['nCdServico'] = implode(',', $services);
+        $this->payload['nCdServico'] = implode(',', array_unique($services));
 
         return $this;
     }
@@ -177,5 +216,23 @@ class Freight
         }
 
         return $this->volume();
+    }
+
+    public function calculate()
+    {
+        $response = $this->http->get(WebService::URL, [
+            'query' => $this->payload(),
+        ])->getBody()->getContents();
+
+        $responseParse = json_decode(json_encode(simplexml_load_string($response)), true);
+
+        return [
+            'code' => $responseParse['Servicos']['cServico']['Codigo'],
+            'price' => floatval(str_replace(',', '.', $responseParse['Servicos']['cServico']['Valor'])),
+            'deadline' => $responseParse['Servicos']['cServico']['PrazoEntrega'],
+            'error' => [],
+        ];
+
+        var_dump($responseParse);
     }
 }
