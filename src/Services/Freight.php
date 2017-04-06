@@ -35,7 +35,7 @@ class Freight implements FreightInterface
     /**
      * Creates a new class instance.
      *
-     * @param ClientInterface $http
+     * @param \GuzzleHttp\ClientInterface $http
      */
     public function __construct(ClientInterface $http)
     {
@@ -275,10 +275,29 @@ class Freight implements FreightInterface
         }
 
         return [
+            'name' => $this->fetchCorreiosServiceName($service['Codigo']),
             'code' => intval($service['Codigo']),
             'price' => floatval(str_replace(',', '.', $service['Valor'])),
             'deadline' => intval($service['PrazoEntrega']),
             'error' => $error,
         ];
+    }
+
+    /**
+     * Recupera nome do serviço com base no código dos Correios.
+     *
+     * @param  string $code
+     *
+     * @return string
+     */
+    protected function fetchCorreiosServiceName($code)
+    {
+        return [
+            41106 => 'PAC',
+            40010 => 'Sedex',
+            40045 => 'Sedex a Cobrar',
+            40215 => 'Sedex 10',
+            40290 => 'Sedex Hoje',
+        ][intval($code)];
     }
 }

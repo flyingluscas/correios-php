@@ -37,7 +37,7 @@ class CalculateFreightTest extends TestCase
             [
                 realpath(__DIR__.'/../XMlSamples/ErrorServiceResponse.xml'),
                 [
-                    ['code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => [
+                    ['name' => 'Sedex', 'code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => [
                         'code' => -1,
                         'message' => 'Código de serviço inválido',
                     ]]
@@ -45,13 +45,13 @@ class CalculateFreightTest extends TestCase
             ],
             [
                 realpath(__DIR__.'/../XMlSamples/SingleServiceResponse.xml'),
-                [['code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []]]
+                [['name' => 'Sedex', 'code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []]]
             ],
             [
                 realpath(__DIR__.'/../XMlSamples/MultipleServicesResponse.xml'),
                 [
-                    ['code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []],
-                    ['code' => Service::PAC, 'price' => 16.1, 'deadline' => 5, 'error' => []],
+                    ['name' => 'Sedex', 'code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []],
+                    ['name' => 'PAC', 'code' => Service::PAC, 'price' => 16.1, 'deadline' => 5, 'error' => []],
                 ]
             ],
         ];
