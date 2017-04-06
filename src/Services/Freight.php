@@ -285,7 +285,7 @@ class Freight implements FreightInterface
     }
 
     /**
-     * Recupera nome do serviço com base no código dos Correios.
+     * Nome dos seviços (Sedex, PAC...) com base no código.
      *
      * @param  string $code
      *
