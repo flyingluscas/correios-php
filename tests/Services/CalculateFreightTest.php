@@ -13,10 +13,13 @@ use GuzzleHttp\Handler\MockHandler;
 
 class CalculateFreightTest extends TestCase
 {
-    public function testCalculateFreight()
+    /**
+     * @dataProvider calculateFreightProvider
+     */
+    public function testCalculateFreight($XMLSampleFile, array $expected)
     {
         $mock = new MockHandler([
-            new Response(200, [], file_get_contents(realpath(__DIR__.'/../XMlSamples/SingleServiceRequest.xml')))
+            new Response(200, [], file_get_contents($XMLSampleFile))
         ]);
 
         $http = new Client([
@@ -25,17 +28,23 @@ class CalculateFreightTest extends TestCase
 
         $freight = new Freight($http);
 
-        $freight->origin('01001-000')
-            ->destination('87047-230')
-            ->services(Service::SEDEX)
-            ->item(16, 16, 16, .3, 1)
-            ->item(16, 16, 16, .3, 3);
+        $this->assertEquals($expected, $freight->calculate());
+    }
 
-        $this->assertArraySubset([
-            'code' => Service::SEDEX,
-            'price' => 16.1,
-            'deadline' => 1,
-            'error' => [],
-        ], $freight->calculate());
+    public function calculateFreightProvider()
+    {
+        return [
+            [
+                realpath(__DIR__.'/../XMlSamples/SingleServiceResponse.xml'),
+                [['code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []]]
+            ],
+            [
+                realpath(__DIR__.'/../XMlSamples/MultipleServicesResponse.xml'),
+                [
+                    ['code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []],
+                    ['code' => Service::PAC, 'price' => 16.1, 'deadline' => 5, 'error' => []],
+                ]
+            ],
+        ];
     }
 }

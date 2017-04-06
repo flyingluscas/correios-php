@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cResultado
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://tempuri.org/">
+    <Servicos>
+        <cServico>
+            <Codigo>40010</Codigo>
+            <Valor>16,10</Valor>
+            <PrazoEntrega>1</PrazoEntrega>
+            <ValorMaoPropria>0,00</ValorMaoPropria>
+            <ValorAvisoRecebimento>0,00</ValorAvisoRecebimento>
+            <ValorValorDeclarado>0,00</ValorValorDeclarado>
+            <EntregaDomiciliar>S</EntregaDomiciliar>
+            <EntregaSabado>N</EntregaSabado>
+            <Erro>0</Erro>
+            <MsgErro />
+            <ValorSemAdicionais>16,10</ValorSemAdicionais>
+            <obsFim />
+        </cServico>
+        <cServico>
+            <Codigo>41106</Codigo>
+            <Valor>16,10</Valor>
+            <PrazoEntrega>5</PrazoEntrega>
+            <ValorMaoPropria>0,00</ValorMaoPropria>
+            <ValorAvisoRecebimento>0,00</ValorAvisoRecebimento>
+            <ValorValorDeclarado>0,00</ValorValorDeclarado>
+            <EntregaDomiciliar>S</EntregaDomiciliar>
+            <EntregaSabado>N</EntregaSabado>
+            <Erro>0</Erro>
+            <MsgErro />
+            <ValorSemAdicionais>16,10</ValorSemAdicionais>
+            <obsFim />
+        </cServico>
+    </Servicos>
+</cResultado>

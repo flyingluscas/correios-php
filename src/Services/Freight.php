@@ -2,8 +2,9 @@
 
 namespace FlyingLuscas\Correios\Services;
 
-use Exception;
+use SimpleXMLElement;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\ClientInterface;
 use FlyingLuscas\Correios\WebService;
 
@@ -218,21 +219,56 @@ class Freight
         return $this->volume();
     }
 
+    /**
+     * Calcula preços e prazos junto ao Correios.
+     *
+     * @return array
+     */
     public function calculate()
     {
         $response = $this->http->get(WebService::URL, [
             'query' => $this->payload(),
-        ])->getBody()->getContents();
+        ]);
 
-        $responseParse = json_decode(json_encode(simplexml_load_string($response)), true);
+        $services = $this->fetchCorreiosServices($response);
 
+        return array_map([$this, 'transformCorreiosService'], $services);
+    }
+
+    /**
+     * Extrai todos os serviços retornados no XML de resposta dos Correios.
+     *
+     * @param  \GuzzleHttp\Psr7\Response $response
+     *
+     * @return array
+     */
+    protected function fetchCorreiosServices(Response $response)
+    {
+        $xml = simplexml_load_string($response->getBody()->getContents());
+        $results = json_decode(json_encode($xml->Servicos))->cServico;
+
+        if (! is_array($results)) {
+            return [get_object_vars($results)];
+        }
+
+        return array_map('get_object_vars', $results);
+    }
+
+    /**
+     * Transforma um serviço dos Correios em um array mais limpo,
+     * legível e fácil de manipular.
+     *
+     * @param  array  $service
+     *
+     * @return array
+     */
+    protected function transformCorreiosService(array $service)
+    {
         return [
-            'code' => $responseParse['Servicos']['cServico']['Codigo'],
-            'price' => floatval(str_replace(',', '.', $responseParse['Servicos']['cServico']['Valor'])),
-            'deadline' => $responseParse['Servicos']['cServico']['PrazoEntrega'],
+            'code' => intval($service['Codigo']),
+            'price' => floatval(str_replace(',', '.', $service['Valor'])),
+            'deadline' => intval($service['PrazoEntrega']),
             'error' => [],
         ];
-
-        var_dump($responseParse);
     }
 }
