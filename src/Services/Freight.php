@@ -276,7 +276,7 @@ class Freight implements FreightInterface
         }
 
         return [
-            'name' => $this->fetchCorreiosServiceName($service['Codigo']),
+            'name' => $this->friendlyServiceName($service['Codigo']),
             'code' => intval($service['Codigo']),
             'price' => floatval(str_replace(',', '.', $service['Valor'])),
             'deadline' => intval($service['PrazoEntrega']),
@@ -291,7 +291,7 @@ class Freight implements FreightInterface
      *
      * @return string
      */
-    protected function fetchCorreiosServiceName($code)
+    protected function friendlyServiceName($code)
     {
         return [
             Service::PAC => 'PAC',
