@@ -1,5 +1,7 @@
 # Correios PHP SDK
 
+## THIS VERSION IS UNDER DEVELOPMENT
+
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
@@ -21,33 +23,43 @@ $ composer require flyingluscas/correios-php
 ## Uso
 
 ``` php
-use FlyingLuscas\Correios\Format;
-use FlyingLuscas\Correios\Freight;
+use FlyingLuscas\Correios\Client;
 use FlyingLuscas\Correios\Service;
 
-$freight = new Freight;
+require 'vendor/autoload.php';
 
-$freight->setServices(Service::SEDEX, Service::PAC);
-$freight->setZipCodes('01001-000', '87047-230');
+$correios = new Client;
 
-$freight->cart->fill([
+$correios->freight()
+    ->origin('01001-000')
+    ->destination('87047-230')
+    ->services(Service::SEDEX, Service::PAC)
+    ->item(16, 16, 16, .3, 1)
+    ->item(16, 16, 16, .3, 3)
+    ->item(16, 16, 16, .3, 2)
+    ->calculate();
+
+/*
+
+Resultados:
+
+[
     [
-        'width' => 16,
-        'height' => 16,
-        'length' => 16,
-        'weight' => 0.3,
-        'quantity' => 1,
+        'name' => 'Sedex',
+        'code' => 40010,
+        'price' => 51,
+        'deadline' => 4,
+        'error' => [],
     ],
     [
-        'width' => 16,
-        'height' => 16,
-        'length' => 16,
-        'weight' => 0.3,
-        'quantity' => 3,
+        'name' => 'PAC',
+        'code' => 41106,
+        'price' => 22.5,
+        'deadline' => 9,
+        'error' => [],
     ],
-]);
-
-$results = $freight->calculate();
+]
+*/
 ```
 
 ## Change log
