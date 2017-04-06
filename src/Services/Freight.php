@@ -7,8 +7,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\ClientInterface;
 use FlyingLuscas\Correios\WebService;
+use FlyingLuscas\Correios\Contracts\FreightInterface;
 
-class Freight
+class Freight implements FreightInterface
 {
     /**
      * Payload da requisição.
