@@ -6,6 +6,7 @@ use SimpleXMLElement;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\ClientInterface;
+use FlyingLuscas\Correios\Service;
 use FlyingLuscas\Correios\WebService;
 use FlyingLuscas\Correios\Contracts\FreightInterface;
 
@@ -293,11 +294,11 @@ class Freight implements FreightInterface
     protected function fetchCorreiosServiceName($code)
     {
         return [
-            41106 => 'PAC',
-            40010 => 'Sedex',
-            40045 => 'Sedex a Cobrar',
-            40215 => 'Sedex 10',
-            40290 => 'Sedex Hoje',
+            Service::PAC => 'PAC',
+            Service::SEDEX => 'Sedex',
+            Service::SEDEX_A_COBRAR => 'Sedex a Cobrar',
+            Service::SEDEX_10 => 'Sedex 10',
+            Service::SEDEX_HOJE => 'Sedex Hoje',
         ][intval($code)];
     }
 }
