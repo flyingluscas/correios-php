@@ -23,18 +23,43 @@ $ composer require flyingluscas/correios-php
 ## Uso
 
 ``` php
+use FlyingLuscas\Correios\Client;
 use FlyingLuscas\Correios\Service;
-use FlyingLuscas\Correios\Correios;
 
-Correios::freight()
+require 'vendor/autoload.php';
+
+$correios = new Client;
+
+$correios->freight()
     ->origin('01001-000')
     ->destination('87047-230')
     ->services(Service::SEDEX, Service::PAC)
-    ->items([
-        ['width' => 16, 'height' => 16, 'length' => 16, 'weight' => 0.3, 'quantity' => 1],
-        ['width' => 16, 'height' => 16, 'length' => 16, 'weight' => 0.3, 'quantity' => 3],
-    ])
+    ->item(16, 16, 16, .3, 1)
+    ->item(16, 16, 16, .3, 3)
+    ->item(16, 16, 16, .3, 2)
     ->calculate();
+
+/*
+
+Resultados:
+
+[
+    [
+        'name' => 'Sedex',
+        'code' => 40010,
+        'price' => 51,
+        'deadline' => 4,
+        'error' => [],
+    ],
+    [
+        'name' => 'PAC',
+        'code' => 41106,
+        'price' => 22.5,
+        'deadline' => 9,
+        'error' => [],
+    ],
+]
+*/
 ```
 
 ## Change log
