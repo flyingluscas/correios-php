@@ -264,11 +264,20 @@ class Freight
      */
     protected function transformCorreiosService(array $service)
     {
+        $error = [];
+
+        if ($service['Erro'] != 0) {
+            $error = [
+                'code' => $service['Erro'],
+                'message' => $service['MsgErro'],
+            ];
+        }
+
         return [
             'code' => intval($service['Codigo']),
             'price' => floatval(str_replace(',', '.', $service['Valor'])),
             'deadline' => intval($service['PrazoEntrega']),
-            'error' => [],
+            'error' => $error,
         ];
     }
 }

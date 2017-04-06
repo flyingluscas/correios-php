@@ -35,6 +35,15 @@ class CalculateFreightTest extends TestCase
     {
         return [
             [
+                realpath(__DIR__.'/../XMlSamples/ErrorServiceResponse.xml'),
+                [
+                    ['code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => [
+                        'code' => -1,
+                        'message' => 'Código de serviço inválido',
+                    ]]
+                ]
+            ],
+            [
                 realpath(__DIR__.'/../XMlSamples/SingleServiceResponse.xml'),
                 [['code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []]]
             ],
