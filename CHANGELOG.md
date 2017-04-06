@@ -4,6 +4,11 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.0.0 - 2017-04-05
+
+### Changed
+- Nova API implementada, tornando o uso do package mais simples e fluído.
+
 ## v1.1.1 - 2016-11-23
 
 ### Changed
