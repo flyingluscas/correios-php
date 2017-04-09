@@ -4,6 +4,11 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.1.0 - 2017-09-05
+
+### Added
+- Busca de endereços via CEP
+
 ## v2.0.0 - 2017-04-05
 
 ### Changed

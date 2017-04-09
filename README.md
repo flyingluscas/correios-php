@@ -8,7 +8,12 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Uma maneira fácil de usar o cálculo de frete dos [Correios](http://www.correios.com.br) para vários itens.
+Uma maneira fácil de interagir com as principais funcionalidades dos [Correios](https://correios.com.br).
+
+## Funcionalidades
+
+- [Consultar CEP](#consultar-cep)
+- [Calcular Preços e Prazos](#calcular-precos-e-prazos)
 
 ## Instalação
 
@@ -19,6 +24,40 @@ $ composer require flyingluscas/correios-php
 ```
 
 ## Uso
+
+##### Consultar CEP
+
+Encontrar endereço pelo CEP consultando diretamente o [WebService][correios-sigep] dos Correios.
+
+``` php
+use FlyingLuscas\Correios\Client;
+
+require 'vendor/autoload.php';
+
+$correios = new Client;
+
+$correios->zipcode()->find('01001-000');
+
+/*
+
+Resultado:
+
+[
+    'zipcode' => '01001-000',
+    'street' => 'Praça da Sé',
+    'complement' => [
+        'lado ímpar',
+    ],
+    'district' => 'Sé',
+    'city' => 'São Paulo',
+    'uf' => 'SP',
+]
+*/
+```
+
+##### Calcular Preços e Prazos
+
+Calcular preços e prazos de serviços de entrega (Sedex, PAC e etc), com suporte a multiplos objetos na mesma consulta.
 
 ``` php
 use FlyingLuscas\Correios\Client;
@@ -103,3 +142,5 @@ A Licença MIT (MIT). Consulte o [arquivo de licença](LICENSE.md) para obter ma
 [link-downloads]: https://packagist.org/packages/flyingluscas/correios-php
 [link-author]: https://github.com/flyingluscas
 [link-contributors]: ../../contributors
+
+[correios-sigep]: https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl
