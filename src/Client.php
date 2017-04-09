@@ -32,8 +32,11 @@ class Client
      * @param \FlyingLuscas\Correios\Contracts\FreightInterface|null $freight
      * @param \FlyingLuscas\Correios\Contracts\ZipCodeInterface|null $zipcode
      */
-    public function __construct(ClientInterface $http = null, FreightInterface $freight = null, ZipCodeInterface $zipcode = null)
-    {
+    public function __construct(
+        ClientInterface $http = null,
+        FreightInterface $freight = null,
+        ZipCodeInterface $zipcode = null
+    ) {
         $this->http = $http ?: new HttpClient;
         $this->freight = $freight ?: new Freight($this->http);
         $this->zipcode = $zipcode ?: new ZipCode($this->http);
