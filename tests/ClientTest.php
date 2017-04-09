@@ -3,7 +3,10 @@
 namespace FlyingLuscas\Correios;
 
 use Mockery;
-use FlyingLuscas\Correios\Services\Freight;
+use GuzzleHttp\ClientInterface;
+use FlyingLuscas\Correios\Services\ZipCode;
+use FlyingLuscas\Correios\Contracts\FreightInterface;
+use FlyingLuscas\Correios\Contracts\ZipCodeInterface;
 
 class ClientTest extends TestCase
 {
@@ -17,12 +20,19 @@ class ClientTest extends TestCase
         parent::setUp();
 
         $this->correios = new Client(
-            Mockery::mock(Freight::class)
+            Mockery::mock(ClientInterface::class),
+            Mockery::mock(FreightInterface::class),
+            Mockery::mock(ZipCodeInterface::class)
         );
     }
 
     public function testFreightService()
     {
-        $this->assertInstanceOf(Freight::class, $this->correios->freight());
+        $this->assertInstanceOf(FreightInterface::class, $this->correios->freight());
+    }
+
+    public function testZipCodeService()
+    {
+        $this->assertInstanceOf(ZipCodeInterface::class, $this->correios->zipcode());
     }
 }

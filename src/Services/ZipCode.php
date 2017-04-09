@@ -4,8 +4,9 @@ namespace FlyingLuscas\Correios\Services;
 
 use GuzzleHttp\ClientInterface;
 use FlyingLuscas\Correios\WebService;
+use FlyingLuscas\Correios\Contracts\ZipCodeInterface;
 
-class ZipCode
+class ZipCode implements ZipCodeInterface
 {
     /**
      * Cliente HTTP
@@ -194,12 +195,13 @@ class ZipCode
     public function fetchZipCodeAddress()
     {
         $address = $this->parsedXML['consultaCEPResponse']['return'];
+        $zipcode = preg_replace('/^([0-9]{5})([0-9]{3})$/', '${1}-${2}', $address['cep']);
         $complement = array_values(array_filter([
             $address['complemento'], $address['complemento2']
         ]));
 
         return [
-            'zipcode' => $this->zipcode,
+            'zipcode' => $zipcode,
             'street' => $address['end'],
             'complement' => $complement,
             'district' => $address['bairro'],

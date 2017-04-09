@@ -2,9 +2,12 @@
 
 namespace FlyingLuscas\Correios;
 
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Client as HttpClient;
 use FlyingLuscas\Correios\Services\Freight;
+use FlyingLuscas\Correios\Services\ZipCode;
 use FlyingLuscas\Correios\Contracts\FreightInterface;
+use FlyingLuscas\Correios\Contracts\ZipCodeInterface;
 
 class Client
 {
@@ -16,13 +19,24 @@ class Client
     protected $freight;
 
     /**
-     * Creates a new Client instance.
+     * Serviço de CEP.
      *
-     * @param \FlyingLuscas\Correios\Contracts\FreightInterface|null $freight
+     * @var \FlyingLuscas\Correios\Contracts\ZipCodeInterface
      */
-    public function __construct(FreightInterface $freight = null)
+    protected $zipcode;
+
+    /**
+     * Cria uma nova instância da classe Client.
+     *
+     * @param \GuzzleHttp\ClientInterface|null  $http
+     * @param \FlyingLuscas\Correios\Contracts\FreightInterface|null $freight
+     * @param \FlyingLuscas\Correios\Contracts\ZipCodeInterface|null $zipcode
+     */
+    public function __construct(ClientInterface $http = null, FreightInterface $freight = null, ZipCodeInterface $zipcode = null)
     {
-        $this->freight = $freight ?: new Freight(new HttpClient);
+        $this->http = $http ?: new HttpClient;
+        $this->freight = $freight ?: new Freight($this->http);
+        $this->zipcode = $zipcode ?: new ZipCode($this->http);
     }
 
     /**
@@ -33,5 +47,15 @@ class Client
     public function freight()
     {
         return $this->freight;
+    }
+
+    /**
+     * Serviço de CEP dos Correios.
+     *
+     * @return \FlyingLuscas\Correios\Contracts\ZipCodeInterface
+     */
+    public function zipcode()
+    {
+        return $this->zipcode;
     }
 }
