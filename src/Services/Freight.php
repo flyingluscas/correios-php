@@ -228,7 +228,7 @@ class Freight implements FreightInterface
      */
     public function calculate()
     {
-        $response = $this->http->get(WebService::URL, [
+        $response = $this->http->get(WebService::CALC_PRICE_DEADLINE, [
             'query' => $this->payload(),
         ]);
 
