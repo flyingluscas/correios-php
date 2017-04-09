@@ -25,7 +25,7 @@ $ composer require flyingluscas/correios-php
 
 ## Uso
 
-##### Consultar CEP
+#### Consultar CEP
 
 Encontrar endereço pelo CEP consultando diretamente o [WebService][correios-sigep] dos Correios.
 
@@ -55,7 +55,7 @@ Resultado:
 */
 ```
 
-##### Calcular Preços e Prazos
+#### Calcular Preços e Prazos
 
 Calcular preços e prazos de serviços de entrega (Sedex, PAC e etc), com suporte a multiplos objetos na mesma consulta.
 
