@@ -69,6 +69,8 @@ class ZipCode
         if ($this->hasErrorMessage()) {
             return $this->fetchErrorMessage();
         }
+
+        return $this->fetchZipCodeAddress();
     }
 
     /**
@@ -166,21 +168,43 @@ class ZipCode
     protected function fetchErrorMessage()
     {
         return [
-            'error' => $this->errorMessages($this->parsedXML['Fault']['faultstring']),
+            'error' => $this->messages($this->parsedXML['Fault']['faultstring']),
         ];
     }
 
     /**
-     * Formata mensagens de erro para uma forma mais amigável.
+     * Mensagens de erro mais legíveis.
      *
      * @param  string $faultString
      *
      * @return string
      */
-    protected function errorMessages($faultString)
+    protected function messages($faultString)
     {
         return [
             'CEP NAO ENCONTRADO' => 'CEP não encontrado',
         ][$faultString];
+    }
+
+    /**
+     * Recupera endereço do XML de resposta.
+     *
+     * @return array
+     */
+    public function fetchZipCodeAddress()
+    {
+        $address = $this->parsedXML['consultaCEPResponse']['return'];
+        $complement = array_values(array_filter([
+            $address['complemento'], $address['complemento2']
+        ]));
+
+        return [
+            'zipcode' => $this->zipcode,
+            'street' => $address['end'],
+            'complement' => $complement,
+            'district' => $address['bairro'],
+            'city' => $address['cidade'],
+            'uf' => $address['uf'],
+        ];
     }
 }

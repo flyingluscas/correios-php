@@ -17,4 +17,21 @@ class ZipCodeTest extends TestCase
             'error' => 'CEP não encontrado',
         ], $zipcode->find('99999-999'));
     }
+
+    public function testFindAddressByZipCode()
+    {
+        $body = __DIR__.'/../XMlSamples/ZipCodeResponse.xml';
+        $http = $this->mockHttpClient($body);
+
+        $zipcode = new ZipCode($http);
+
+        $this->assertEquals([
+            'zipcode' => '01001-000',
+            'street' => 'Praça da Sé',
+            'complement' => ['- lado ímpar'],
+            'district' => 'Sé',
+            'city' => 'São Paulo',
+            'uf' => 'SP',
+        ], $zipcode->find('01001-000'));
+    }
 }
