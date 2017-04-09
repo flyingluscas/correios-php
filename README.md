@@ -13,7 +13,7 @@ Uma maneira fácil de interagir com as principais funcionalidades dos [Correios]
 ## Funcionalidades
 
 - [Consultar CEP](#consultar-cep)
-- [Calcular Preços e Prazos](#calcular-precos-e-prazos)
+- [Calcular Preços e Prazos](#calcular-preços-e-prazos)
 
 ## Instalação
 
