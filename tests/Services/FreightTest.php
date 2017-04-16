@@ -110,6 +110,11 @@ class FreightTest extends TestCase
         $this->assertPayloadHas('nCdFormato', $format);
     }
 
+    /**
+     * Provide a list of all of the packages types.
+     *
+     * @return array
+     */
     public function packageFormatProvider()
     {
         return [
