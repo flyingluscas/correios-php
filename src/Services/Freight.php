@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\ClientInterface;
 use FlyingLuscas\Correios\Service;
 use FlyingLuscas\Correios\WebService;
+use FlyingLuscas\Correios\PackageType;
 use FlyingLuscas\Correios\Contracts\FreightInterface;
 
 class Freight implements FreightInterface
@@ -58,7 +59,7 @@ class Freight implements FreightInterface
             'nCdServico' => '',
             'sCepOrigem' => '',
             'sCepDestino' => '',
-            'nCdFormato' => 1,
+            'nCdFormato' => PackageType::BOX,
             'nVlLargura' => 0,
             'nVlAltura' => 0,
             'nVlPeso' => 0,
@@ -124,6 +125,20 @@ class Freight implements FreightInterface
     {
         $this->payload['nCdEmpresa'] = $code;
         $this->payload['sDsSenha'] = $password;
+
+        return $this;
+    }
+
+    /**
+     * Formato da encomenda (Caixa, pacote, rolo, prisma ou envelope).
+     *
+     * @param  int $format
+     *
+     * @return self
+     */
+    public function package($format)
+    {
+        $this->payload['nCdFormato'] = $format;
 
         return $this;
     }

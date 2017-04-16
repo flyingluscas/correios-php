@@ -6,6 +6,7 @@ use Mockery;
 use GuzzleHttp\ClientInterface;
 use FlyingLuscas\Correios\Service;
 use FlyingLuscas\Correios\TestCase;
+use FlyingLuscas\Correios\PackageType;
 
 class FreightTest extends TestCase
 {
@@ -98,6 +99,24 @@ class FreightTest extends TestCase
         $this->assertInstanceOf(Freight::class, $this->freight->credentials($code, $password));
         $this->assertPayloadHas('nCdEmpresa', $code)
             ->assertPayloadHas('sDsSenha', $password);
+    }
+
+    /**
+     * @dataProvider packageFormatProvider
+     */
+    public function testSetPackageFormat($format)
+    {
+        $this->assertInstanceOf(Freight::class, $this->freight->package($format));
+        $this->assertPayloadHas('nCdFormato', $format);
+    }
+
+    public function packageFormatProvider()
+    {
+        return [
+            [PackageType::BOX],
+            [PackageType::ROLL],
+            [PackageType::ENVELOPE],
+        ];
     }
 
     /**
