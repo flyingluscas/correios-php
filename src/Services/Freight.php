@@ -113,6 +113,22 @@ class Freight implements FreightInterface
     }
 
     /**
+     * Código administrativo e senha junto aos Correios.
+     *
+     * @param  string $code
+     * @param  string $password
+     *
+     * @return self
+     */
+    public function credentials($code, $password)
+    {
+        $this->payload['nCdEmpresa'] = $code;
+        $this->payload['sDsSenha'] = $password;
+
+        return $this;
+    }
+
+    /**
      * Dimensões, peso e quantidade do item.
      *
      * @param  int|float $width
@@ -128,6 +144,22 @@ class Freight implements FreightInterface
         $this->items[] = compact('width', 'height', 'length', 'weight', 'quantity');
 
         return $this;
+    }
+
+    /**
+     * Calcula preços e prazos junto ao Correios.
+     *
+     * @return array
+     */
+    public function calculate()
+    {
+        $response = $this->http->get(WebService::CALC_PRICE_DEADLINE, [
+            'query' => $this->payload(),
+        ]);
+
+        $services = $this->fetchCorreiosServices($response);
+
+        return array_map([$this, 'transformCorreiosService'], $services);
     }
 
     /**
@@ -219,22 +251,6 @@ class Freight implements FreightInterface
         }
 
         return $this->volume();
-    }
-
-    /**
-     * Calcula preços e prazos junto ao Correios.
-     *
-     * @return array
-     */
-    public function calculate()
-    {
-        $response = $this->http->get(WebService::CALC_PRICE_DEADLINE, [
-            'query' => $this->payload(),
-        ]);
-
-        $services = $this->fetchCorreiosServices($response);
-
-        return array_map([$this, 'transformCorreiosService'], $services);
     }
 
     /**

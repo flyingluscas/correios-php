@@ -90,6 +90,16 @@ class FreightTest extends TestCase
         $this->assertPayloadHas('nVlPeso', 62.5);
     }
 
+    public function testSetCredentials()
+    {
+        $code = '08082650';
+        $password = 'n5f9t8';
+
+        $this->assertInstanceOf(Freight::class, $this->freight->credentials($code, $password));
+        $this->assertPayloadHas('nCdEmpresa', $code)
+            ->assertPayloadHas('sDsSenha', $password);
+    }
+
     /**
      * Asserts payload has a given key and value.
      *
