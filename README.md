@@ -36,7 +36,8 @@ require 'vendor/autoload.php';
 
 $correios = new Client;
 
-$correios->zipcode()->find('01001-000');
+$correios->zipcode()
+    ->find('01001-000');
 
 /*
 
