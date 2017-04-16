@@ -14,6 +14,28 @@ use FlyingLuscas\Correios\Contracts\FreightInterface;
 class Freight implements FreightInterface
 {
     /**
+     * Payload padrão.
+     *
+     * @var array
+     */
+    protected $defaultPayload = [
+        'nCdEmpresa' => '',
+        'sDsSenha' => '',
+        'nCdServico' => '',
+        'sCepOrigem' => '',
+        'sCepDestino' => '',
+        'nCdFormato' => PackageType::BOX,
+        'nVlLargura' => 0,
+        'nVlAltura' => 0,
+        'nVlPeso' => 0,
+        'nVlComprimento' => 0,
+        'nVlDiametro' => 0,
+        'sCdMaoPropria' => 'N',
+        'nVlValorDeclarado' => 0,
+        'sCdAvisoRecebimento' => 'N',
+    ];
+
+    /**
      * Payload da requisição.
      *
      * @var array
@@ -51,24 +73,9 @@ class Freight implements FreightInterface
      */
     public function payload()
     {
-        $this->setFreightDimensions();
+        $this->setFreightDimensionsOnPayload();
 
-        return array_merge([
-            'nCdEmpresa' => '',
-            'sDsSenha' => '',
-            'nCdServico' => '',
-            'sCepOrigem' => '',
-            'sCepDestino' => '',
-            'nCdFormato' => PackageType::BOX,
-            'nVlLargura' => 0,
-            'nVlAltura' => 0,
-            'nVlPeso' => 0,
-            'nVlComprimento' => 0,
-            'nVlDiametro' => 0,
-            'sCdMaoPropria' => 'N',
-            'nVlValorDeclarado' => 0,
-            'sCdAvisoRecebimento' => 'N',
-        ], $this->payload);
+        return array_merge($this->defaultPayload, $this->payload);
     }
 
     /**
@@ -178,11 +185,11 @@ class Freight implements FreightInterface
     }
 
     /**
-     * Seta largura, altura, comprimento, peso e volume do frete.
+     * Calcula largura, altura, comprimento, peso e volume do frete no payload.
      *
      * @return self
      */
-    protected function setFreightDimensions()
+    protected function setFreightDimensionsOnPayload()
     {
         if ($this->items) {
             $this->payload['nVlLargura'] = $this->width();
