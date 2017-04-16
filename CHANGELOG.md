@@ -4,7 +4,15 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
-## v2.1.0 - 2017-09-05
+## v2.2.0 - 2017-04-16
+
+### Added
+- Método `credentials` para informar código administrativo e senha dos Correios ao calcular frete.
+- Método `package` para informar o tipo de embalagem (pacote, caixa, envelope e etc) ao calcular frete.
+- Método `useOwnHand` para informar se deve ou não se usado o serviço adicional mão própria ao calcular frete.
+- Método `declaredValue` para informar se deve ou não ser usado o serviço valor declarado ao calcular frete.
+
+## v2.1.0 - 2017-04-09
 
 ### Added
 - Busca de endereços via CEP
