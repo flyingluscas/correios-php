@@ -65,9 +65,9 @@ class Freight implements FreightInterface
             'nVlPeso' => 0,
             'nVlComprimento' => 0,
             'nVlDiametro' => 0,
-            'sCdMaoPropria' => 0,
+            'sCdMaoPropria' => 'N',
             'nVlValorDeclarado' => 0,
-            'sCdAvisoRecebimento' => 0,
+            'sCdAvisoRecebimento' => 'N',
         ], $this->payload);
     }
 
