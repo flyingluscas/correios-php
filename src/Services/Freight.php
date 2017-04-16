@@ -121,7 +121,11 @@ class Freight implements FreightInterface
     }
 
     /**
-     * Código administrativo e senha junto aos Correios.
+     * Código administrativo junto à ECT. O código está disponível no
+     * corpo do contrato firmado com os Correios.
+     *
+     * Senha para acesso ao serviço, associada ao seu código administrativo,
+     * a senha inicial corresponde aos 8 primeiros dígitos do CNPJ informado no contrato.
      *
      * @param  string $code
      * @param  string $password
@@ -146,6 +150,20 @@ class Freight implements FreightInterface
     public function package($format)
     {
         $this->payload['nCdFormato'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Indique se a encomenda será entregue com o serviço adicional mão própria.
+     *
+     * @param  bool   $useOwnHand
+     *
+     * @return self
+     */
+    public function useOwnHand(bool $useOwnHand)
+    {
+        $this->payload['sCdMaoPropria'] = $useOwnHand ? 'S' : 'N';
 
         return $this;
     }

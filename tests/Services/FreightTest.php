@@ -110,6 +110,15 @@ class FreightTest extends TestCase
         $this->assertPayloadHas('nCdFormato', $format);
     }
 
+    public function testSetOwnHand()
+    {
+        $this->assertInstanceOf(Freight::class, $this->freight->useOwnHand(false));
+        $this->assertPayloadHas('sCdMaoPropria', 'N');
+
+        $this->freight->useOwnHand(true);
+        $this->assertPayloadHas('sCdMaoPropria', 'S');
+    }
+
     /**
      * Provide a list of all of the packages types.
      *
