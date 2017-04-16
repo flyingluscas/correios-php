@@ -119,6 +119,14 @@ class FreightTest extends TestCase
         $this->assertPayloadHas('sCdMaoPropria', 'S');
     }
 
+    public function testSetDeclaredValue()
+    {
+        $value = 10.38;
+
+        $this->assertInstanceOf(Freight::class, $this->freight->declaredValue($value));
+        $this->assertPayloadHas('nVlValorDeclarado', $value);
+    }
+
     /**
      * Provide a list of all of the packages types.
      *

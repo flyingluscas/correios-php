@@ -169,6 +169,21 @@ class Freight implements FreightInterface
     }
 
     /**
+     * Indique se a encomenda será entregue com o serviço adicional valor declarado,
+     * deve ser apresentado o valor declarado desejado, em reais.
+     *
+     * @param  int|float $value
+     *
+     * @return self
+     */
+    public function declaredValue($value)
+    {
+        $this->payload['nVlValorDeclarado'] = floatval($value);
+
+        return $this;
+    }
+
+    /**
      * Dimensões, peso e quantidade do item.
      *
      * @param  int|float $width
