@@ -157,13 +157,13 @@ class Freight implements FreightInterface
     /**
      * Indique se a encomenda será entregue com o serviço adicional mão própria.
      *
-     * @param  bool   $useOwnHand
+     * @param  bool $useOwnHand
      *
      * @return self
      */
-    public function useOwnHand(bool $useOwnHand)
+    public function useOwnHand($useOwnHand)
     {
-        $this->payload['sCdMaoPropria'] = $useOwnHand ? 'S' : 'N';
+        $this->payload['sCdMaoPropria'] = (bool) $useOwnHand ? 'S' : 'N';
 
         return $this;
     }
