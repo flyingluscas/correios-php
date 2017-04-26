@@ -72,9 +72,9 @@ $correios->freight()
     ->origin('01001-000')
     ->destination('87047-230')
     ->services(Service::SEDEX, Service::PAC)
-    ->item(16, 16, 16, .3, 1)
-    ->item(16, 16, 16, .3, 3)
-    ->item(16, 16, 16, .3, 2)
+    ->item(16, 16, 16, .3, 1) // largura, altura, comprimento, peso e quantidade
+    ->item(16, 16, 16, .3, 3) // largura, altura, comprimento, peso e quantidade
+    ->item(16, 16, 16, .3, 2) // largura, altura, comprimento, peso e quantidade
     ->calculate();
 
 /*
