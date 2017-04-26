@@ -4,6 +4,11 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.2.1 - 2017-04-26
+
+### Fixed
+- Implentado os métodos restantes na interface de frete.
+
 ## v2.2.0 - 2017-04-16
 
 ### Added
