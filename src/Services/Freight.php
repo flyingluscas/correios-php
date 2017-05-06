@@ -365,13 +365,13 @@ class Freight implements FreightInterface
     protected function friendlyServiceName($code)
     {
         return [
-            Service::PAC => 'PAC',
-            Service::PAC_CONTRATO => 'PAC',
-            Service::SEDEX => 'Sedex',
-            Service::SEDEX_CONTRATO => 'Sedex',
-            Service::SEDEX_A_COBRAR => 'Sedex a Cobrar',
-            Service::SEDEX_10 => 'Sedex 10',
-            Service::SEDEX_HOJE => 'Sedex Hoje',
-        ][$code];
+            intval(Service::PAC) => 'PAC',
+            intval(Service::PAC_CONTRATO) => 'PAC',
+            intval(Service::SEDEX) => 'Sedex',
+            intval(Service::SEDEX_CONTRATO) => 'Sedex',
+            intval(Service::SEDEX_A_COBRAR) => 'Sedex a Cobrar',
+            intval(Service::SEDEX_10) => 'Sedex 10',
+            intval(Service::SEDEX_HOJE) => 'Sedex Hoje',
+        ][intval($code)];
     }
 }
