@@ -102,7 +102,7 @@ Resultados:
 
 ## Change log
 
-Consulte [CHANGELOG](CHANGELOG.md) para obter mais informações sobre o que mudou recentemente.
+Consulte [CHANGELOG](.github/CHANGELOG.md) para obter mais informações sobre o que mudou recentemente.
 
 ## Testando
 
@@ -112,7 +112,7 @@ $ composer test
 
 ## Contribuindo
 
-Consulte [CONTRIBUTING](CONTRIBUTING.md) para obter mais detalhes.
+Consulte [CONTRIBUTING](.github/CONTRIBUTING.md) para obter mais detalhes.
 
 ## Segurança
 
