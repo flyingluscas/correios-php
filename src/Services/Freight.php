@@ -366,7 +366,9 @@ class Freight implements FreightInterface
     {
         return [
             Service::PAC => 'PAC',
+            Service::PAC_CONTRATO => 'PAC',
             Service::SEDEX => 'Sedex',
+            Service::SEDEX_CONTRATO => 'Sedex',
             Service::SEDEX_A_COBRAR => 'Sedex a Cobrar',
             Service::SEDEX_10 => 'Sedex 10',
             Service::SEDEX_HOJE => 'Sedex Hoje',
