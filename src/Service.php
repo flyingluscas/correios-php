@@ -8,11 +8,21 @@ abstract class Service
      * PAC.
      */
     const PAC = 41106;
+    
+    /**
+     * PAC sem contrato.
+     */
+    const PAC_SEM_CONTRATO = 04510;
 
     /**
      * Sedex.
      */
     const SEDEX = 40010;
+    
+    /**
+     * SEDEX sem contrato.
+     */
+    const SEDEX_SEM_CONTRATO = 04014;
 
     /**
      * Sedex a Cobrar.
