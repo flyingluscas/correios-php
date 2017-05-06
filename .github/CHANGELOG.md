@@ -4,6 +4,12 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.2.2 - 2017-05-05
+
+### Fixed
+- Códigos dos serviços **Sedex** e **PAC** foram atualizados de acordo com a atualização dos Correios no dia 05/05/2017 - **[@julianobailao](https://github.com/julianobailao)**
+- Visibilidade do método **fetchZipCodeAddress** alterado para **protected** - **[@flyingluscas](https://github.com/flyingluscas)**
+
 ## v2.2.1 - 2017-04-26
 
 ### Fixed
