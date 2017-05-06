@@ -5,7 +5,7 @@
     xmlns="http://tempuri.org/">
     <Servicos>
         <cServico>
-            <Codigo>04014</Codigo>
+            <Codigo>4014</Codigo>
             <Valor>16,10</Valor>
             <PrazoEntrega>1</PrazoEntrega>
             <ValorMaoPropria>0,00</ValorMaoPropria>
