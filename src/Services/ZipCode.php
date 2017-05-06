@@ -192,7 +192,7 @@ class ZipCode implements ZipCodeInterface
      *
      * @return array
      */
-    public function fetchZipCodeAddress()
+    protected function fetchZipCodeAddress()
     {
         $address = $this->parsedXML['consultaCEPResponse']['return'];
         $zipcode = preg_replace('/^([0-9]{5})([0-9]{3})$/', '${1}-${2}', $address['cep']);
