@@ -348,7 +348,7 @@ class Freight implements FreightInterface
 
         return [
             'name' => $this->friendlyServiceName($service['Codigo']),
-            'code' => intval($service['Codigo']),
+            'code' => $service['Codigo'],
             'price' => floatval(str_replace(',', '.', $service['Valor'])),
             'deadline' => intval($service['PrazoEntrega']),
             'error' => $error,
@@ -372,6 +372,6 @@ class Freight implements FreightInterface
             Service::SEDEX_A_COBRAR => 'Sedex a Cobrar',
             Service::SEDEX_10 => 'Sedex 10',
             Service::SEDEX_HOJE => 'Sedex Hoje',
-        ][intval($code)];
+        ][$code];
     }
 }
