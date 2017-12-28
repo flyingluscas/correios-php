@@ -13,7 +13,6 @@ use FlyingLuscas\Correios\Contracts\FreightInterface;
 
 class Freight implements FreightInterface
 {
-
     /**
      * Payload padrão.
      *
@@ -75,6 +74,7 @@ class Freight implements FreightInterface
     public function payload()
     {
         $this->setFreightDimensionsOnPayload();
+
         return array_merge($this->defaultPayload, $this->payload);
     }
 
@@ -88,6 +88,7 @@ class Freight implements FreightInterface
     public function origin($zipCode)
     {
         $this->payload['sCepOrigem'] = preg_replace('/[^0-9]/', null, $zipCode);
+
         return $this;
     }
 
@@ -101,6 +102,7 @@ class Freight implements FreightInterface
     public function destination($zipCode)
     {
         $this->payload['sCepDestino'] = preg_replace('/[^0-9]/', null, $zipCode);
+
         return $this;
     }
 
@@ -114,6 +116,7 @@ class Freight implements FreightInterface
     public function services(...$services)
     {
         $this->payload['nCdServico'] = implode(',', array_unique($services));
+
         return $this;
     }
 
@@ -133,6 +136,7 @@ class Freight implements FreightInterface
     {
         $this->payload['nCdEmpresa'] = $code;
         $this->payload['sDsSenha'] = $password;
+
         return $this;
     }
 
@@ -146,6 +150,7 @@ class Freight implements FreightInterface
     public function package($format)
     {
         $this->payload['nCdFormato'] = $format;
+
         return $this;
     }
 
@@ -159,6 +164,7 @@ class Freight implements FreightInterface
     public function useOwnHand($useOwnHand)
     {
         $this->payload['sCdMaoPropria'] = (bool) $useOwnHand ? 'S' : 'N';
+
         return $this;
     }
 
@@ -173,6 +179,7 @@ class Freight implements FreightInterface
     public function declaredValue($value)
     {
         $this->payload['nVlValorDeclarado'] = floatval($value);
+
         return $this;
     }
 
@@ -190,6 +197,7 @@ class Freight implements FreightInterface
     public function item($width, $height, $length, $weight, $quantity = 1)
     {
         $this->items[] = compact('width', 'height', 'length', 'weight', 'quantity');
+
         return $this;
     }
 
@@ -203,7 +211,9 @@ class Freight implements FreightInterface
         $response = $this->http->get(WebService::CALC_PRICE_DEADLINE, [
             'query' => $this->payload(),
         ]);
+
         $services = $this->fetchCorreiosServices($response);
+
         return array_map([$this, 'transformCorreiosService'], $services);
     }
 
@@ -221,6 +231,7 @@ class Freight implements FreightInterface
             $this->payload['nVlDiametro'] = 0;
             $this->payload['nVlPeso'] = $this->useWeightOrVolume();
         }
+
         return $this;
     }
 
@@ -307,9 +318,11 @@ class Freight implements FreightInterface
     {
         $xml = simplexml_load_string($response->getBody()->getContents());
         $results = json_decode(json_encode($xml->Servicos))->cServico;
+
         if (! is_array($results)) {
             return [get_object_vars($results)];
         }
+
         return array_map('get_object_vars', $results);
     }
 
@@ -324,12 +337,14 @@ class Freight implements FreightInterface
     protected function transformCorreiosService(array $service)
     {
         $error = [];
+
         if ($service['Erro'] != 0) {
             $error = [
                 'code' => $service['Erro'],
                 'message' => $service['MsgErro'],
             ];
         }
+
         return [
             'name' => $this->friendlyServiceName($service['Codigo']),
             'code' => $service['Codigo'],
@@ -338,7 +353,7 @@ class Freight implements FreightInterface
             'error' => $error,
         ];
     }
-    
+
     /**
      * Nome dos seviços (Sedex, PAC...) com base no código.
      *
