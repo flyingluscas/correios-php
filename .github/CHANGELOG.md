@@ -4,6 +4,11 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.3.2 - 2017-12-28
+
+### Added
+- Novos códigos de contrato do Correios - **[@lucascolette](https://github.com/lucascolette)**
+
 ## v2.2.2 - 2017-05-05
 
 ### Fixed
