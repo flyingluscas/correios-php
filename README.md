@@ -131,15 +131,15 @@ A Licença MIT (MIT). Consulte o [arquivo de licença](LICENSE.md) para obter ma
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/flyingluscas/correios-php/master.svg?style=flat-square
 [icon-styleci]: https://styleci.io/repos/72848778/shield?branch=master
-[ico-code-climate]: https://img.shields.io/codeclimate/coverage/github/flyingluscas/correios-php.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/codeclimate/github/flyingluscas/correios-php.svg?style=flat-square
+[ico-code-climate]: https://img.shields.io/codeclimate/maintainability/flyingluscas/correios-php.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/codeclimate/c/flyingluscas/correios-php.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/flyingluscas/correios-php.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/flyingluscas/correios-php
 [link-travis]: https://travis-ci.org/flyingluscas/correios-php
 [link-styleci]: https://styleci.io/repos/72848778
-[link-code-climate]: https://codeclimate.com/github/flyingluscas/correios-php/coverage
-[link-code-quality]: https://codeclimate.com/github/flyingluscas/correios-php/code
+[link-code-climate]: https://codeclimate.com/github/flyingluscas/correios-php/test_coverage
+[link-code-quality]: https://codeclimate.com/github/flyingluscas/correios-php/maintainability
 [link-downloads]: https://packagist.org/packages/flyingluscas/correios-php
 [link-author]: https://github.com/flyingluscas
 [link-contributors]: ../../contributors
