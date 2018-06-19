@@ -1,6 +1,7 @@
 # Correios PHP SDK
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
+[![CircleCI][icon-circleci]][link-circleci]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![StyleCI][icon-styleci]][link-styleci]
@@ -134,7 +135,9 @@ A Licença MIT (MIT). Consulte o [arquivo de licença](LICENSE.md) para obter ma
 [ico-code-climate]: https://img.shields.io/codeclimate/maintainability/flyingluscas/correios-php.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/codeclimate/c/flyingluscas/correios-php.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/flyingluscas/correios-php.svg?style=flat-square
+[icon-circleci]: https://img.shields.io/circleci/project/github/flyingluscas/correios-php.svg?style=flat-square
 
+[link-circleci]: https://circleci.com/gh/flyingluscas/correios-php
 [link-packagist]: https://packagist.org/packages/flyingluscas/correios-php
 [link-travis]: https://travis-ci.org/flyingluscas/correios-php
 [link-styleci]: https://styleci.io/repos/72848778
