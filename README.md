@@ -1,11 +1,9 @@
 # Correios PHP SDK
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
+[![CircleCI][icon-circleci]][link-circleci]
+[![Codecov][icon-codecov]][link-codecov]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][icon-styleci]][link-styleci]
-[![Coverage Status][ico-code-climate]][link-code-climate]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Uma maneira fácil de interagir com as principais funcionalidades dos [Correios](https://correios.com.br).
@@ -129,17 +127,13 @@ A Licença MIT (MIT). Consulte o [arquivo de licença](LICENSE.md) para obter ma
 
 [ico-version]: https://img.shields.io/packagist/v/flyingluscas/correios-php.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/flyingluscas/correios-php/master.svg?style=flat-square
-[icon-styleci]: https://styleci.io/repos/72848778/shield?branch=master
-[ico-code-climate]: https://img.shields.io/codeclimate/maintainability/flyingluscas/correios-php.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/codeclimate/c/flyingluscas/correios-php.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/flyingluscas/correios-php.svg?style=flat-square
+[icon-circleci]: https://img.shields.io/circleci/project/github/flyingluscas/correios-php.svg?style=flat-square
+[icon-codecov]: https://img.shields.io/codecov/c/github/flyingluscas/correios-php.svg?style=flat-square
 
+[link-circleci]: https://circleci.com/gh/flyingluscas/correios-php
+[link-codecov]: https://codecov.io/gh/flyingluscas/correios-php
 [link-packagist]: https://packagist.org/packages/flyingluscas/correios-php
-[link-travis]: https://travis-ci.org/flyingluscas/correios-php
-[link-styleci]: https://styleci.io/repos/72848778
-[link-code-climate]: https://codeclimate.com/github/flyingluscas/correios-php/test_coverage
-[link-code-quality]: https://codeclimate.com/github/flyingluscas/correios-php/maintainability
 [link-downloads]: https://packagist.org/packages/flyingluscas/correios-php
 [link-author]: https://github.com/flyingluscas
 [link-contributors]: ../../contributors

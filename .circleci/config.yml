@@ -1,0 +1,133 @@
+version: '2'
+
+jobs:
+  php56:
+    docker:
+      - image: php:5.6-alpine
+    steps:
+      - checkout
+      - run:
+          name: Install xDebug Extension
+          command: |
+            apk add --no-cache --no-progress g++ make autoconf bash
+            pecl -q install xdebug-2.5.5
+            docker-php-ext-enable xdebug
+      - run:
+          name: Install Composer
+          command: |
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Composer Install
+          command: composer install --no-progress --no-interaction
+      - run:
+          name: Composer Test
+          command: composer test -- --coverage-text
+      - run:
+          name: Composer Check Style
+          command: composer check-style
+      - run:
+          name: Upload Code Coverage
+          command: |
+            curl -s https://codecov.io/bash > .codecov
+            chmod +x .codecov
+            ./.codecov
+      - store_artifacts:
+          path: build/coverage
+          destination: coverage
+
+  php70:
+    docker:
+      - image: php:7.0-alpine
+    steps:
+      - checkout
+      - run:
+          name: Install xDebug Extension
+          command: |
+            apk add --no-cache --no-progress g++ make autoconf
+            pecl -q install xdebug
+            docker-php-ext-enable xdebug
+      - run:
+          name: Install Composer
+          command: |
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Composer Install
+          command: composer install --no-progress --no-interaction
+      - run:
+          name: Composer Test
+          command: composer test -- --coverage-text
+      - run:
+          name: Composer Check Style
+          command: composer check-style
+      - store_artifacts:
+          path: build/coverage
+          destination: coverage
+
+  php71:
+    docker:
+      - image: php:7.1-alpine
+    steps:
+      - checkout
+      - run:
+          name: Install xDebug Extension
+          command: |
+            apk add --no-cache --no-progress g++ make autoconf
+            pecl -q install xdebug
+            docker-php-ext-enable xdebug
+      - run:
+          name: Install Composer
+          command: |
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Composer Install
+          command: composer install --no-progress --no-interaction
+      - run:
+          name: Composer Test
+          command: composer test -- --coverage-text
+      - run:
+          name: Composer Check Style
+          command: composer check-style
+      - store_artifacts:
+          path: build/coverage
+          destination: coverage
+
+  php72:
+    docker:
+      - image: php:7.2-alpine
+    steps:
+      - checkout
+      - run:
+          name: Install xDebug Extension
+          command: |
+            apk add --no-cache --no-progress g++ make autoconf
+            pecl -q install xdebug
+            docker-php-ext-enable xdebug
+      - run:
+          name: Install Composer
+          command: |
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Composer Install
+          command: composer install --no-progress --no-interaction
+      - run:
+          name: Composer Test
+          command: composer test -- --coverage-text
+      - run:
+          name: Composer Check Style
+          command: composer check-style
+      - store_artifacts:
+          path: build/coverage
+          destination: coverage
+
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - php56
+      - php70
+      - php71
+      - php72
