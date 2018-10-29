@@ -24,4 +24,10 @@ Nós aceitamos contribuições via **Pull Requests** no [Github](https://github.
 $ composer test
 ```
 
+Você também pode rodar os testes dentro de um container docker:
+
+``` bash
+$ docker-compose up
+```
+
 **Bora coda**!
