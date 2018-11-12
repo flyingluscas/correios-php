@@ -197,7 +197,7 @@ class ZipCode implements ZipCodeInterface
         $address = $this->parsedXML['consultaCEPResponse']['return'];
         $zipcode = preg_replace('/^([0-9]{5})([0-9]{3})$/', '${1}-${2}', $address['cep']);
         $complement = array_values(array_filter([
-            $address['complemento'], $address['complemento2']
+            isset($address['complemento']) ? $address['complemento'] : '', isset($address['complemento2']) ? $address['complemento2'] : ''
         ]));
 
         return [
