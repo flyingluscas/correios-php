@@ -359,11 +359,12 @@ class Freight implements FreightInterface
      *
      * @param  string $code
      *
-     * @return string
+     * @return string|null
      */
     protected function friendlyServiceName($code)
     {
-        return [
+        $id = intval($code);
+        $services = [
             intval(Service::PAC) => 'PAC',
             intval(Service::PAC_CONTRATO) => 'PAC',
             intval(Service::PAC_CONTRATO_04812) => 'PAC',
@@ -379,6 +380,12 @@ class Freight implements FreightInterface
             intval(Service::SEDEX_CONTRATO_40436) => 'Sedex',
             intval(Service::SEDEX_CONTRATO_40444) => 'Sedex',
             intval(Service::SEDEX_CONTRATO_40568) => 'Sedex',
-        ][intval($code)];
+        ];
+
+        if (array_key_exists($id, $services)) {
+            return $services[$id];
+        }
+
+        return null;
     }
 }
