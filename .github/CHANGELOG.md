@@ -4,6 +4,11 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.3.3 - 2018-12-26
+
+### Fixed
+- Corrigido o [erro disparado](https://github.com/flyingluscas/correios-php/issues/17) quando o campo "complemento" não está presente nas buscas de endereços por CEP.
+
 ## v2.3.2 - 2017-12-28
 
 ### Added
