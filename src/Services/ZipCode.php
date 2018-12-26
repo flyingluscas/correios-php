@@ -188,6 +188,27 @@ class ZipCode implements ZipCodeInterface
     }
 
     /**
+     * Retorna complemento de um endereço.
+     *
+     * @param  array  $address
+     * @return array
+     */
+    protected function getComplement(array $address)
+    {
+        $complement = [];
+
+        if (array_key_exists('complemento', $address)) {
+            $complement[] = $address['complemento'];
+        }
+
+        if (array_key_exists('complemento2', $address)) {
+            $complement[] = $address['complemento2'];
+        }
+
+        return $complement;
+    }
+
+    /**
      * Recupera endereço do XML de resposta.
      *
      * @return array
@@ -196,9 +217,7 @@ class ZipCode implements ZipCodeInterface
     {
         $address = $this->parsedXML['consultaCEPResponse']['return'];
         $zipcode = preg_replace('/^([0-9]{5})([0-9]{3})$/', '${1}-${2}', $address['cep']);
-        $complement = array_values(array_filter([
-            $address['complemento'], $address['complemento2']
-        ]));
+        $complement = $this->getComplement($address);
 
         return [
             'zipcode' => $zipcode,
