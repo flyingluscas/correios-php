@@ -3,15 +3,27 @@
 namespace FlyingLuscas\Correios\Services;
 
 use FlyingLuscas\Correios\TestCase;
+use GuzzleHttp\Client as HttpClient;
 
 class ZipCodeTest extends TestCase
 {
+    /**
+     * HTTP Client.
+     *
+     * @var \GuzzleHttp\Client
+     */
+    protected $http;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->http = new HttpClient;
+    }
+
     public function testNotFoundZipCode()
     {
-        $body = __DIR__.'/../XMlSamples/ZipCodeNotFoundErrorResponse.xml';
-        $http = $this->mockHttpClient($body);
-
-        $zipcode = new ZipCode($http);
+        $zipcode = new ZipCode($this->http);
 
         $this->assertEquals([
             'error' => 'CEP não encontrado',
@@ -20,10 +32,7 @@ class ZipCodeTest extends TestCase
 
     public function testFindAddressByZipCode()
     {
-        $body = __DIR__.'/../XMlSamples/ZipCodeResponse.xml';
-        $http = $this->mockHttpClient($body);
-
-        $zipcode = new ZipCode($http);
+        $zipcode = new ZipCode($this->http);
 
         $this->assertEquals([
             'zipcode' => '01001-000',

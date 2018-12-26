@@ -8,7 +8,7 @@ abstract class Service
      * PAC.
      */
     const PAC = '04510';
-    
+
     /**
      * PAC com contrato.
      */
@@ -18,7 +18,7 @@ abstract class Service
      * Sedex.
      */
     const SEDEX = '04014';
-    
+
     /**
      * Sedex com contrato.
      */

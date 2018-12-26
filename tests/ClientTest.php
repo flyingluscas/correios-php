@@ -2,9 +2,6 @@
 
 namespace FlyingLuscas\Correios;
 
-use Mockery;
-use GuzzleHttp\ClientInterface;
-use FlyingLuscas\Correios\Services\ZipCode;
 use FlyingLuscas\Correios\Contracts\FreightInterface;
 use FlyingLuscas\Correios\Contracts\ZipCodeInterface;
 
@@ -19,11 +16,7 @@ class ClientTest extends TestCase
     {
         parent::setUp();
 
-        $this->correios = new Client(
-            Mockery::mock(ClientInterface::class),
-            Mockery::mock(FreightInterface::class),
-            Mockery::mock(ZipCodeInterface::class)
-        );
+        $this->correios = new Client();
     }
 
     public function testFreightService()

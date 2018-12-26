@@ -2,11 +2,10 @@
 
 namespace FlyingLuscas\Correios\Services;
 
-use Mockery;
-use GuzzleHttp\ClientInterface;
+use FlyingLuscas\Correios\PackageType;
 use FlyingLuscas\Correios\Service;
 use FlyingLuscas\Correios\TestCase;
-use FlyingLuscas\Correios\PackageType;
+use GuzzleHttp\Client as HttpClient;
 
 class FreightTest extends TestCase
 {
@@ -19,7 +18,7 @@ class FreightTest extends TestCase
     {
         parent::setUp();
 
-        $http = Mockery::mock(ClientInterface::class);
+        $http = new HttpClient;
 
         $this->freight = new Freight($http);
     }

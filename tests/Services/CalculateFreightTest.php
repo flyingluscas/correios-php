@@ -4,43 +4,100 @@ namespace FlyingLuscas\Correios\Services;
 
 use FlyingLuscas\Correios\Service;
 use FlyingLuscas\Correios\TestCase;
+use GuzzleHttp\Client as HttpClient;
 
 class CalculateFreightTest extends TestCase
 {
     /**
-     * @dataProvider calculateFreightProvider
+     * HTTP Client.
+     *
+     * @var \GuzzleHttp\Client
      */
-    public function testCalculateFreight($file, array $expected)
+    protected $http;
+
+    public function setUp()
     {
-        $http = $this->mockHttpClient($file);
-        $freight = new Freight($http);
+        parent::setUp();
+
+        $this->http = new HttpClient;
+    }
+
+    public function testInvalidServiceError()
+    {
+        $freight = new Freight($this->http);
+
+        $freight
+            ->origin('01001-000')
+            ->destination('87047-230')
+            ->services('99999')
+            ->item(16, 16, 16, .3, 1);
+
+        $expected = [
+            [
+                'name' => null,
+                'code' => '99999',
+                'price' => 0,
+                'deadline' => 0,
+                'error' => [
+                    'code' => '001',
+                    'message' => 'Codigo de servico invalido.',
+                ],
+            ],
+        ];
 
         $this->assertEquals($expected, $freight->calculate());
     }
 
-    public function calculateFreightProvider()
+    public function testWithSingleService()
     {
-        return [
+        $freight = new Freight($this->http);
+
+        $freight
+            ->origin('01001-000')
+            ->destination('87047-230')
+            ->services(Service::SEDEX)
+            ->item(16, 16, 16, .3, 1);
+
+        $expected = [
             [
-                __DIR__.'/../XMlSamples/ErrorServiceResponse.xml',
-                [
-                    ['name' => 'Sedex', 'code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => [
-                        'code' => -1,
-                        'message' => 'Código de serviço inválido',
-                    ]]
-                ]
-            ],
-            [
-                __DIR__.'/../XMlSamples/SingleServiceResponse.xml',
-                [['name' => 'Sedex', 'code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []]]
-            ],
-            [
-                __DIR__.'/../XMlSamples/MultipleServicesResponse.xml',
-                [
-                    ['name' => 'Sedex', 'code' => Service::SEDEX, 'price' => 16.1, 'deadline' => 1, 'error' => []],
-                    ['name' => 'PAC', 'code' => Service::PAC, 'price' => 16.1, 'deadline' => 5, 'error' => []],
-                ]
+                'name' => 'Sedex',
+                'code' => Service::SEDEX,
+                'price' => 49.7,
+                'deadline' => 3,
+                'error' => [],
             ],
         ];
+
+        $this->assertEquals($expected, $freight->calculate());
+    }
+
+    public function testWithMultipleServices()
+    {
+        $freight = new Freight($this->http);
+
+        $freight
+            ->origin('01001-000')
+            ->destination('87047-230')
+            ->services(Service::SEDEX, Service::PAC)
+            ->item(16, 16, 16, .3, 1);
+
+        $expected = [
+            [
+                'name' => 'Sedex',
+                'code' => Service::SEDEX,
+                'price' => 49.7,
+                'deadline' => 3,
+                'error' => [],
+            ],
+            [
+                'name' => 'PAC',
+                'code' => Service::PAC,
+                'price' => 25.1,
+                'deadline' => 9,
+                'error' => [],
+            ],
+        ];
+
+        $this->assertEquals($expected, $freight->calculate());
     }
 }
