@@ -7,22 +7,22 @@ abstract class Service
     /**
      * PAC.
      */
-    const PAC = '04510';
+    const PAC = '4510';
 
     /**
      * PAC com contrato.
      */
-    const PAC_CONTRATO = '04669';
+    const PAC_CONTRATO = '4669';
 
     /**
      * Sedex.
      */
-    const SEDEX = '04014';
+    const SEDEX = '4014';
 
     /**
      * Sedex com contrato.
      */
-    const SEDEX_CONTRATO = '04162';
+    const SEDEX_CONTRATO = '4162';
 
     /**
      * Sedex a Cobrar.
@@ -42,7 +42,7 @@ abstract class Service
     /**
      * Sedex Contrato 04316
      */
-    const SEDEX_CONTRATO_04316 = '04316';
+    const SEDEX_CONTRATO_04316 = '4316';
 
     /**
      * Sedex Contrato 40096
@@ -67,7 +67,7 @@ abstract class Service
     /**
      * PAC Contrato 04812
      */
-    const PAC_CONTRATO_04812 = '04812';
+    const PAC_CONTRATO_04812 = '4812';
 
     /**
      * PAC Contrato 41068

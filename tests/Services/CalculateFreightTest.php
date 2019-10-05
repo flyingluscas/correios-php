@@ -62,7 +62,7 @@ class CalculateFreightTest extends TestCase
             [
                 'name' => 'Sedex',
                 'code' => Service::SEDEX,
-                'price' => 49.7,
+                'price' => 52.4,
                 'deadline' => 3,
                 'error' => [],
             ],
