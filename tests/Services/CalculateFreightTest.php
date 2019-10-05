@@ -36,11 +36,11 @@ class CalculateFreightTest extends TestCase
             [
                 'name' => null,
                 'code' => '99999',
-                'price' => 0,
+                'price' => 0.0,
                 'deadline' => 0,
                 'error' => [
-                    'code' => '001',
-                    'message' => 'Codigo de servico invalido.',
+                    'code' => '-888',
+                    'message' => 'Para este serviço só está disponível o cálculo do PRAZO.',
                 ],
             ],
         ];
