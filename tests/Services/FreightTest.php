@@ -37,12 +37,11 @@ class FreightTest extends TestCase
 
     public function testSetServices()
     {
-        $pac = Service::PAC;
         $sedex = Service::SEDEX;
 
-        $this->freight->services($sedex, $pac);
+        $this->freight->services($sedex);
 
-        $this->assertPayloadHas('nCdServico', "{$sedex},{$pac}");
+        $this->assertPayloadHas('nCdServico', $sedex);
     }
 
     public function testPayloadWidth()
@@ -157,7 +156,7 @@ class FreightTest extends TestCase
 
         $this->assertArraySubset([
             $key => $value,
-        ], $this->freight->payload());
+        ], $this->freight->payload(Service::SEDEX));
 
         return $this;
     }
