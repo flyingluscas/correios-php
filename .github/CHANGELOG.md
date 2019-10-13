@@ -4,6 +4,15 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.3.4 - 2019-10-13
+
+### Changed
+- Códigos dos serviços deixou de ter `0` na frente com a nova interface do Correios.
+- Mensagem de erro quando um código de serviço inválido é informado.
+
+### Fixed
+- Cálculo para múltiplos serviços (Sedex, PAC...) que deixou de funcionar com a nova interface do Correios.
+
 ## v2.3.3 - 2018-12-26
 
 ### Fixed
