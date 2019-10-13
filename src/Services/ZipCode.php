@@ -183,7 +183,7 @@ class ZipCode implements ZipCodeInterface
     protected function messages($faultString)
     {
         return [
-            'CEP NAO ENCONTRADO' => 'CEP não encontrado',
+            'CEP INVÁLIDO' => 'CEP não encontrado',
         ][$faultString];
     }
 

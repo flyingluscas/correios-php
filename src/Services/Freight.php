@@ -14,6 +14,13 @@ use FlyingLuscas\Correios\Contracts\FreightInterface;
 class Freight implements FreightInterface
 {
     /**
+     * Serviços do Correios (Sedex, PAC...).
+     *
+     * @var array
+     */
+    protected $services = [];
+
+    /**
      * Payload padrão.
      *
      * @var array
@@ -69,11 +76,21 @@ class Freight implements FreightInterface
     /**
      * Payload da requisição para o webservice dos Correios.
      *
+     * @param  string $service Serviço (Sedex, PAC...)
+     *
      * @return array
      */
-    public function payload()
+    public function payload($service)
     {
-        $this->setFreightDimensionsOnPayload();
+        $this->payload['nCdServico'] = $service;
+
+        if ($this->items) {
+            $this->payload['nVlLargura'] = $this->width();
+            $this->payload['nVlAltura'] = $this->height();
+            $this->payload['nVlComprimento'] = $this->length();
+            $this->payload['nVlDiametro'] = 0;
+            $this->payload['nVlPeso'] = $this->useWeightOrVolume();
+        }
 
         return array_merge($this->defaultPayload, $this->payload);
     }
@@ -115,7 +132,7 @@ class Freight implements FreightInterface
      */
     public function services(...$services)
     {
-        $this->payload['nCdServico'] = implode(',', array_unique($services));
+        $this->services = array_unique($services);
 
         return $this;
     }
@@ -208,31 +225,16 @@ class Freight implements FreightInterface
      */
     public function calculate()
     {
-        $response = $this->http->get(WebService::CALC_PRICE_DEADLINE, [
-            'query' => $this->payload(),
-        ]);
+        $servicesResponses = array_map(function ($service) {
+            return $this->http->get(WebService::CALC_PRICE_DEADLINE, [
+                'query' => $this->payload($service),
+            ]);
+        }, $this->services);
 
-        $services = $this->fetchCorreiosServices($response);
+
+        $services = array_map([$this, 'fetchCorreiosService'], $servicesResponses);
 
         return array_map([$this, 'transformCorreiosService'], $services);
-    }
-
-    /**
-     * Calcula largura, altura, comprimento, peso e volume do frete no payload.
-     *
-     * @return self
-     */
-    protected function setFreightDimensionsOnPayload()
-    {
-        if ($this->items) {
-            $this->payload['nVlLargura'] = $this->width();
-            $this->payload['nVlAltura'] = $this->height();
-            $this->payload['nVlComprimento'] = $this->length();
-            $this->payload['nVlDiametro'] = 0;
-            $this->payload['nVlPeso'] = $this->useWeightOrVolume();
-        }
-
-        return $this;
     }
 
     /**
@@ -314,16 +316,12 @@ class Freight implements FreightInterface
      *
      * @return array
      */
-    protected function fetchCorreiosServices(Response $response)
+    protected function fetchCorreiosService(Response $response)
     {
         $xml = simplexml_load_string($response->getBody()->getContents());
-        $results = json_decode(json_encode($xml->Servicos))->cServico;
+        $result = json_decode(json_encode($xml->Servicos));
 
-        if (! is_array($results)) {
-            return [get_object_vars($results)];
-        }
-
-        return array_map('get_object_vars', $results);
+        return get_object_vars($result->cServico);
     }
 
     /**

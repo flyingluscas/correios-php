@@ -7,9 +7,11 @@ interface FreightInterface
     /**
      * Payload da requisição para o webservice dos Correios.
      *
+     * @param  string $service Serviço (Sedex, PAC...)
+     *
      * @return array
      */
-    public function payload();
+    public function payload($service);
 
     /**
      * CEP de origem.

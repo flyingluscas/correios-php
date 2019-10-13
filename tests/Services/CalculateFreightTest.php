@@ -36,11 +36,11 @@ class CalculateFreightTest extends TestCase
             [
                 'name' => null,
                 'code' => '99999',
-                'price' => 0,
+                'price' => 0.0,
                 'deadline' => 0,
                 'error' => [
-                    'code' => '001',
-                    'message' => 'Codigo de servico invalido.',
+                    'code' => '-888',
+                    'message' => 'Para este serviço só está disponível o cálculo do PRAZO.',
                 ],
             ],
         ];
@@ -62,7 +62,7 @@ class CalculateFreightTest extends TestCase
             [
                 'name' => 'Sedex',
                 'code' => Service::SEDEX,
-                'price' => 49.7,
+                'price' => 52.4,
                 'deadline' => 3,
                 'error' => [],
             ],
@@ -85,15 +85,15 @@ class CalculateFreightTest extends TestCase
             [
                 'name' => 'Sedex',
                 'code' => Service::SEDEX,
-                'price' => 49.7,
+                'price' => 52.4,
                 'deadline' => 3,
                 'error' => [],
             ],
             [
                 'name' => 'PAC',
                 'code' => Service::PAC,
-                'price' => 25.1,
-                'deadline' => 9,
+                'price' => 27.7,
+                'deadline' => 6,
                 'error' => [],
             ],
         ];
