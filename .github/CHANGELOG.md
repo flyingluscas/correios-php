@@ -4,6 +4,11 @@ Todas as mudanças importantes em `correios-php` serão documentadas neste arqui
 
 Atualizações devem seguir os princípios de [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v2.4.0 - 2020-11-01
+
+### Changed
+- Atualização do `guzzlehttp/guzzle` para a versão `7.2`.
+
 ## v2.3.4 - 2019-10-13
 
 ### Changed
