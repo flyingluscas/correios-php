@@ -8,10 +8,10 @@ jobs:
       - checkout
       - run:
           name: Install PHP libzip-dev
-          command: sudo apt-get install -y libzip-dev
+          command: apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
-          command: sudo docker-php-ext-install soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - run:
           name: Install PHP libzip-dev
-          command: sudo apt-get install -y libzip-dev
+          command: apt-get install -y libzip-dev
       - run:
           name: Install xDebug Extension
           command: |
@@ -40,7 +40,7 @@ jobs:
             docker-php-ext-enable xdebug
       - run:
           name: Install PHP soap
-          command: sudo docker-php-ext-install soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -69,10 +69,10 @@ jobs:
       - checkout
       - run:
           name: Install PHP libzip-dev
-          command: sudo apt-get install -y libzip-dev
+          command: apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
-          command: sudo docker-php-ext-install soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -92,10 +92,10 @@ jobs:
       - checkout
       - run:
           name: Install PHP libzip-dev
-          command: sudo apt-get install -y libzip-dev
+          command: apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
-          command: sudo docker-php-ext-install soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -115,10 +115,10 @@ jobs:
       - checkout
       - run:
           name: Install PHP libzip-dev
-          command: sudo apt-get install -y libzip-dev
+          command: apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
-          command: sudo docker-php-ext-install soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -138,10 +138,10 @@ jobs:
       - checkout
       - run:
           name: Install PHP libzip-dev
-          command: sudo apt-get install -y libzip-dev
+          command: apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
-          command: sudo docker-php-ext-install soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -161,10 +161,10 @@ jobs:
       - checkout
       - run:
           name: Install PHP libzip-dev
-          command: sudo apt-get install -y libzip-dev
+          command: apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
-          command: sudo docker-php-ext-install soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
