@@ -7,11 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP libzip-dev
-          command: apk add --no-cache --no-progress libzip-dev
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
       - run:
           name: Install PHP soap
-          command: docker-php-ext-enable soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -30,11 +30,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP libzip-dev
-          command: apk add --no-cache --no-progress libzip-dev
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
       - run:
           name: Install PHP soap
-          command: docker-php-ext-enable soap
+          command: docker-php-ext-install soap
       - run:
           name: Install xDebug Extension
           command: |
@@ -68,11 +68,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP libzip-dev
-          command: apk add --no-cache --no-progress libzip-dev
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
       - run:
           name: Install PHP soap
-          command: docker-php-ext-enable soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -91,11 +91,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP libzip-dev
-          command: apk add --no-cache --no-progress libzip-dev
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
       - run:
           name: Install PHP soap
-          command: docker-php-ext-enable soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -114,11 +114,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP libzip-dev
-          command: apk add --no-cache --no-progress libzip-dev
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
       - run:
           name: Install PHP soap
-          command: docker-php-ext-enable soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -137,11 +137,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP libzip-dev
-          command: apk add --no-cache --no-progress libzip-dev
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
       - run:
           name: Install PHP soap
-          command: docker-php-ext-enable soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -160,11 +160,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP libzip-dev
-          command: apk add --no-cache --no-progress libzip-dev
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
       - run:
           name: Install PHP soap
-          command: docker-php-ext-enable soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
