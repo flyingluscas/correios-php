@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP soap
+          command: sudo docker-php-ext-install soap
+      - run:
           name: Install Composer
           command: |
             curl -sS https://getcomposer.org/installer | php
@@ -29,6 +32,9 @@ jobs:
             apk add --no-cache --no-progress g++ make autoconf bash
             pecl -q install xdebug-2.5.5
             docker-php-ext-enable xdebug
+      - run:
+          name: Install PHP soap
+          command: sudo docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -56,6 +62,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP soap
+          command: sudo docker-php-ext-install soap
+      - run:
           name: Install Composer
           command: |
             curl -sS https://getcomposer.org/installer | php
@@ -72,6 +81,9 @@ jobs:
       - image: php:7.1-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP soap
+          command: sudo docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -90,6 +102,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP soap
+          command: sudo docker-php-ext-install soap
+      - run:
           name: Install Composer
           command: |
             curl -sS https://getcomposer.org/installer | php
@@ -107,6 +122,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP soap
+          command: sudo docker-php-ext-install soap
+      - run:
           name: Install Composer
           command: |
             curl -sS https://getcomposer.org/installer | php
@@ -123,6 +141,9 @@ jobs:
       - image: php:7.4-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP soap
+          command: sudo docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
