@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP libzip-dev
+          command: sudo apt-get install -y libzip-dev
+      - run:
           name: Install PHP soap
           command: sudo docker-php-ext-install soap
       - run:
@@ -26,6 +29,9 @@ jobs:
       - image: php:5.6-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP libzip-dev
+          command: sudo apt-get install -y libzip-dev
       - run:
           name: Install xDebug Extension
           command: |
@@ -62,6 +68,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP libzip-dev
+          command: sudo apt-get install -y libzip-dev
+      - run:
           name: Install PHP soap
           command: sudo docker-php-ext-install soap
       - run:
@@ -81,6 +90,9 @@ jobs:
       - image: php:7.1-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP libzip-dev
+          command: sudo apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
           command: sudo docker-php-ext-install soap
@@ -102,6 +114,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP libzip-dev
+          command: sudo apt-get install -y libzip-dev
+      - run:
           name: Install PHP soap
           command: sudo docker-php-ext-install soap
       - run:
@@ -122,6 +137,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP libzip-dev
+          command: sudo apt-get install -y libzip-dev
+      - run:
           name: Install PHP soap
           command: sudo docker-php-ext-install soap
       - run:
@@ -141,6 +159,9 @@ jobs:
       - image: php:7.4-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP libzip-dev
+          command: sudo apt-get install -y libzip-dev
       - run:
           name: Install PHP soap
           command: sudo docker-php-ext-install soap
