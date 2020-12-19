@@ -207,9 +207,9 @@ class CalculateFreightTest extends TestCase
                 'error' => [],
                 'delivery_in_house' => true,
                 'delivery_saturday' => true,
-                'delivery_alert_price' => 0.0,
-                'own_hands_price' => 0.0,
-                'declared_amount_price' => 0.0,
+                'delivery_alert_price' => 0,
+                'own_hands_price' => 0,
+                'declared_amount_price' => 0,
             ],
             [
                 'name' => 'PAC',
@@ -218,10 +218,10 @@ class CalculateFreightTest extends TestCase
                 'deadline' => 3,
                 'error' => [],
                 'delivery_in_house' => true,
-                'delivery_saturday' => false,
-                'delivery_alert_price' => 0.0,
-                'own_hands_price' => 0.0,
-                'declared_amount_price' => 0.0,
+                'delivery_saturday' => true,
+                'delivery_alert_price' => 0,
+                'own_hands_price' => 0,
+                'declared_amount_price' => 0,
             ],
         ];
 
