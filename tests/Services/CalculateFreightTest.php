@@ -142,6 +142,11 @@ class CalculateFreightTest extends TestCase
                     'code' => '-888',
                     'message' => 'Para este serviço só está disponível o cálculo do PRAZO.',
                 ],
+                'delivery_in_house' => false
+                'delivery_saturday' => false
+                'delivery_alert_price' => 0.0
+                'own_hands_price' => 0.0
+                'declared_amount_price' => 0.0
             ],
         ];
 
@@ -168,6 +173,11 @@ class CalculateFreightTest extends TestCase
                 'price' => 55.6,
                 'deadline' => 3,
                 'error' => [],
+                'delivery_in_house' => true
+                'delivery_saturday' => true
+                'delivery_alert_price' => 0.0
+                'own_hands_price' => 0.0
+                'declared_amount_price' => 0.0
             ],
         ];
 
@@ -195,6 +205,12 @@ class CalculateFreightTest extends TestCase
                 'price' => 55.6,
                 'deadline' => 3,
                 'error' => [],
+                'error' => Array (),
+                'delivery_in_house' => true
+                'delivery_saturday' => true
+                'delivery_alert_price' => 0.0
+                'own_hands_price' => 0.0
+                'declared_amount_price' => 0.0
             ],
             [
                 'name' => 'PAC',
@@ -202,6 +218,11 @@ class CalculateFreightTest extends TestCase
                 'price' => 55.6,
                 'deadline' => 3,
                 'error' => [],
+                'delivery_in_house' => true
+                'delivery_saturday' => false
+                'delivery_alert_price' => 0.0
+                'own_hands_price' => 0.0
+                'declared_amount_price' => 0.0
             ],
         ];
 
