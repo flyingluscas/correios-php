@@ -3,7 +3,7 @@ version: '2'
 jobs:
   lint:
     docker:
-      - image: php:alpine
+      - image: php:7.4-alpine
     steps:
       - checkout
       - run:
@@ -101,6 +101,40 @@ jobs:
           name: Composer Test
           command: composer test
 
+    test-php73:
+      docker:
+        - image: php:7.3-alpine
+      steps:
+        - checkout
+        - run:
+            name: Install Composer
+            command: |
+              curl -sS https://getcomposer.org/installer | php
+              mv composer.phar /usr/local/bin/composer
+        - run:
+            name: Composer Install
+            command: composer install --no-progress --no-interaction
+        - run:
+            name: Composer Test
+            command: composer test
+
+    test-php74:
+      docker:
+        - image: php:7.4-alpine
+      steps:
+        - checkout
+        - run:
+            name: Install Composer
+            command: |
+              curl -sS https://getcomposer.org/installer | php
+              mv composer.phar /usr/local/bin/composer
+        - run:
+            name: Composer Install
+            command: composer install --no-progress --no-interaction
+        - run:
+            name: Composer Test
+            command: composer test
+
 workflows:
   version: 2
   tests:
@@ -110,3 +144,5 @@ workflows:
       - test-php70
       - test-php71
       - test-php72
+      - test-php73
+      - test-php74
