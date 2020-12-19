@@ -205,7 +205,6 @@ class CalculateFreightTest extends TestCase
                 'price' => 55.6,
                 'deadline' => 3,
                 'error' => [],
-                'error' => Array (),
                 'delivery_in_house' => true,
                 'delivery_saturday' => true,
                 'delivery_alert_price' => 0.0,
