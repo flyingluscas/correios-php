@@ -186,6 +186,20 @@ class Freight implements FreightInterface
     }
 
     /**
+     * Indique se a encomenda terá aviso de recebimento.
+     *
+     * @param  bool $useDeliveryAlert
+     *
+     * @return self
+     */
+    public function useDeliveryAlert($useDeliveryAlert)
+    {
+        $this->payload['sCdAvisoRecebimento'] = (bool) $useDeliveryAlert ? 'S' : 'N';
+
+        return $this;
+    }
+
+    /**
      * Indique se a encomenda será entregue com o serviço adicional valor declarado,
      * deve ser apresentado o valor declarado desejado, em reais.
      *
@@ -349,6 +363,11 @@ class Freight implements FreightInterface
             'price' => floatval(str_replace(',', '.', $service['Valor'])),
             'deadline' => intval($service['PrazoEntrega']),
             'error' => $error,
+            'delivery_in_house' => $service['EntregaDomiciliar'] === 'S' ? true : false,
+            'delivery_saturday' => $service['EntregaSabado'] === 'S' ? true : false,
+            'delivery_alert_price' => floatval(str_replace(',', '.', $service['ValorAvisoRecebimento'])),
+            'own_hands_price' => floatval(str_replace(',', '.', $service['ValorMaoPropria'])),
+            'declared_amount_price' => floatval(str_replace(',', '.', $service['ValorValorDeclarado'])),
         ];
     }
 

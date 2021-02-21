@@ -3,9 +3,15 @@ version: '2'
 jobs:
   lint:
     docker:
-      - image: php:alpine
+      - image: php:7.4-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
+      - run:
+          name: Install PHP soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -23,6 +29,12 @@ jobs:
       - image: php:5.6-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
+      - run:
+          name: Install PHP soap
+          command: docker-php-ext-install soap
       - run:
           name: Install xDebug Extension
           command: |
@@ -56,6 +68,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
+      - run:
+          name: Install PHP soap
+          command: docker-php-ext-install soap
+      - run:
           name: Install Composer
           command: |
             curl -sS https://getcomposer.org/installer | php
@@ -73,6 +91,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
+      - run:
+          name: Install PHP soap
+          command: docker-php-ext-install soap
+      - run:
           name: Install Composer
           command: |
             curl -sS https://getcomposer.org/installer | php
@@ -89,6 +113,58 @@ jobs:
       - image: php:7.2-alpine
     steps:
       - checkout
+      - run:
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
+      - run:
+          name: Install PHP soap
+          command: docker-php-ext-install soap
+      - run:
+          name: Install Composer
+          command: |
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Composer Install
+          command: composer install --no-progress --no-interaction
+      - run:
+          name: Composer Test
+          command: composer test
+
+  test-php73:
+    docker:
+      - image: php:7.3-alpine
+    steps:
+      - checkout
+      - run:
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
+      - run:
+          name: Install PHP soap
+          command: docker-php-ext-install soap
+      - run:
+          name: Install Composer
+          command: |
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Composer Install
+          command: composer install --no-progress --no-interaction
+      - run:
+          name: Composer Test
+          command: composer test
+
+  test-php74:
+    docker:
+      - image: php:7.4-alpine
+    steps:
+      - checkout
+      - run:
+          name: Install PHP libzip-dev libxml2-dev
+          command: apk add --no-cache --no-progress libzip-dev libxml2-dev
+      - run:
+          name: Install PHP soap
+          command: docker-php-ext-install soap
       - run:
           name: Install Composer
           command: |
@@ -110,3 +186,5 @@ workflows:
       - test-php70
       - test-php71
       - test-php72
+      - test-php73
+      - test-php74
