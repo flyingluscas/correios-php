@@ -343,10 +343,14 @@ class Freight implements FreightInterface
             ];
         }
 
+        $price = preg_replace("/[^0-9.,]*/", "", $service['Valor']);
+        $price = str_replace(".", "", $price);
+        $price = str_replace(",", ".", $price);
+
         return [
             'name' => $this->friendlyServiceName($service['Codigo']),
             'code' => $service['Codigo'],
-            'price' => floatval(str_replace(',', '.', $service['Valor'])),
+            'price' => floatval($price),
             'deadline' => intval($service['PrazoEntrega']),
             'error' => $error,
         ];
