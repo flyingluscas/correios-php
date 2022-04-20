@@ -1,5 +1,5 @@
 {
-    "name": "flyingluscas/correios-php",
+    "name": "imoth/correios-php",
     "type": "library",
     "description": "Uma maneira fácil de interagir com as principais funcionalidades dos Correios.",
     "keywords": [
@@ -11,7 +11,7 @@
         "rastreio",
         "cep"
     ],
-    "homepage": "https://github.com/flyingluscas/correios-php",
+    "homepage": "https://github.com/imoth/correios-php",
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "~5.6|~7.0",
+        "php": "~5.6|~7.0|~8.0",
         "guzzlehttp/guzzle": "~7.2|~6.5"
     },
     "require-dev": {
