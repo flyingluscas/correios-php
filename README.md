@@ -18,7 +18,7 @@ Uma maneira fácil de interagir com as principais funcionalidades dos [Correios]
 Via Composer
 
 ``` bash
-$ composer require flyingluscas/correios-php
+composer require flyingluscas/correios-php
 ```
 
 ## Uso
@@ -105,7 +105,7 @@ Consulte [CHANGELOG](.github/CHANGELOG.md) para obter mais informações sobre o
 ## Testando
 
 ``` bash
-$ composer test
+composer test
 ```
 
 ## Contribuindo
